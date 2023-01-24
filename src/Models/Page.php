@@ -4,14 +4,12 @@ namespace Hup234design\FilamentCms\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Plank\Mediable\Mediable;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
 class Page extends Model implements Sortable
 {
     use SortableTrait;
-    use Mediable;
 
     protected $guarded = [];
 
