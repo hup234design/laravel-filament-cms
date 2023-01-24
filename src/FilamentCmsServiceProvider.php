@@ -7,7 +7,10 @@ use Filament\PluginServiceProvider;
 use Hup234design\FilamentCms\Commands\FilamentCmsSeeder;
 use Hup234design\FilamentCms\Commands\FilamentCmsSetup;
 use Hup234design\FilamentCms\Components\AppLayout;
+use Hup234design\FilamentCms\Components\EventsLayout;
 use Hup234design\FilamentCms\Components\PostsLayout;
+use Hup234design\FilamentCms\Components\ProjectsLayout;
+use Hup234design\FilamentCms\Components\ServicesLayout;
 use Hup234design\FilamentCms\Filament\Resources\PageResource;
 use Spatie\LaravelPackageTools\Package;
 
@@ -31,7 +34,11 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     {
         $package
             ->name('filament-cms')->hasViewComponents('cms',
-                AppLayout::class, PostsLayout::class,
+                AppLayout::class,
+                PostsLayout::class,
+                EventsLayout::class,
+                ProjectsLayout::class,
+                ServicesLayout::class,
             )
             ->hasCommands([
                 FilamentCmsSetup::class,
