@@ -3,7 +3,7 @@
 namespace Hup234design\FilamentCms\Commands;
 
 use Carbon\Carbon;
-use Faker\Factory as Faker;;
+use Faker\Factory as Faker;
 
 use Hup234design\FilamentCms\Models\Event;
 use Hup234design\FilamentCms\Models\EventCategory;
