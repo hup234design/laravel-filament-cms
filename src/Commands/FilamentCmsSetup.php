@@ -17,7 +17,18 @@ class FilamentCmsSetup extends Command
 
         $stubs = $this->getStubsPath();
 
-        $this->call('vendor:publish', ['--provider' => 'Spatie\Permission\PermissionServiceProvider']);
+        $this->runCommands(['composer dump-autoload']);
+
+        // Spatie Permissions
+        $this->call('vendor:publish', [
+            '--provider' => 'Spatie\Permission\PermissionServiceProvider'
+        ]);
+
+        // Filament Navigations
+        $this->call('vendor:publish', [
+            '--provider' => 'RyanChandler\FilamentNavigation\FilamentNavigationServiceProvider',
+            '--tag' => 'filament-navigation-assets'
+        ]);
 
         $this->call('migrate');
 

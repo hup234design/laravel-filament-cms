@@ -22,6 +22,7 @@
         "jeffgreco13/filament-breezy": "v1.4.10.1",
         "laravel/pint": "^1.2",
         "phpsa/filament-authentication": "^2.3",
+        "ryangjchandler/filament-navigation": "^0.4.2",
         "spatie/eloquent-sortable": "^4.0",
         "spatie/laravel-package-tools": "^1.9.2"
     },
