@@ -2,8 +2,13 @@
 
 namespace Hup234design\FilamentCms;
 
+use Filament\Facades\Filament;
 use Filament\PluginServiceProvider;
 use Hup234design\FilamentCms\Commands\FilamentCmsSeeder;
+use Hup234design\FilamentCms\Commands\FilamentCmsSetup;
+use Hup234design\FilamentCms\Components\AppLayout;
+use Hup234design\FilamentCms\Components\PostsLayout;
+use Hup234design\FilamentCms\Filament\Resources\PageResource;
 use Spatie\LaravelPackageTools\Package;
 
 class FilamentCmsServiceProvider extends PluginServiceProvider
@@ -11,7 +16,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     protected function getResources(): array
     {
         return [
-            //
+            PageResource::class
         ];
     }
 
@@ -25,8 +30,11 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('filament-cms')
+            ->name('filament-cms')->hasViewComponents('cms',
+                AppLayout::class, PostsLayout::class,
+            )
             ->hasCommands([
+                FilamentCmsSetup::class,
                 FilamentCmsSeeder::class
             ])
             ->hasRoute('web')
@@ -51,6 +59,11 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     public function boot(): void
     {
         parent::boot();
+
+        Filament::serving(function () {
+            // Using Vite
+            Filament::registerViteTheme('resources/css/filament.css');
+        });
     }
 
 }

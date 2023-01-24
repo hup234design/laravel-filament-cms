@@ -1,6 +1,7 @@
 <?php
 
 use Hup234design\FilamentCms\Http\Controllers\PageController;
+use Hup234design\FilamentCms\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::controller(PostController::class)->group(function () {
-//     //Route::prefix(app(CmsSettings::class)->posts_slug)->group(function() {
-//     Route::prefix('posts')->group(function() {
-//         Route::get('/{slug}', 'post')->name('post');
-//         Route::get('/', 'index')->name('posts');
-//     });
-// });
+ Route::controller(PostController::class)->group(function () {
+     //Route::prefix(app(CmsSettings::class)->posts_slug)->group(function() {
+     Route::prefix('posts')->group(function() {
+         Route::get('/{slug}', 'post')->name('post');
+         Route::get('/', 'index')->name('posts');
+     });
+ });
 
 // Route::controller(ServiceController::class)->group(function () {
 //     Route::get('services/{slug}', 'service')->name('service');

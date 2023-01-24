@@ -44,8 +44,8 @@ class FilamentCmsSeeder extends Command
 
         // truncate all tables
         DB::table('pages')->truncate();
-        //DB::table('posts')->truncate();
-        //DB::table('post_categories')->truncate();
+        DB::table('posts')->truncate();
+        DB::table('post_categories')->truncate();
         //DB::table('services')->truncate();
         //DB::table('projects')->truncate();
         //DB::table('project_categories')->truncate();
@@ -84,40 +84,40 @@ class FilamentCmsSeeder extends Command
 
         $this->info(Page::count()-1 . ' Additional Pages Created');
 
-        // $categories = [
-        //     'blog' => 'Blog',
-        //     'news' => 'News',
-        //     'press-release' => 'Press Release',
-        // ];
+         $categories = [
+             'blog' => 'Blog',
+             'news' => 'News',
+             'press-release' => 'Press Release',
+         ];
 
-        // foreach ($categories as $name=>$slug) {
-        //     PostCategory::create([
-        //         'name' => $name,
-        //         'slug' => $slug,
-        //         'summary' => $this->makeSummary(),
-        //     ]);
-        // }
+         foreach ($categories as $name=>$slug) {
+             PostCategory::create([
+                 'name' => $name,
+                 'slug' => $slug,
+                 'summary' => $this->makeSummary(),
+             ]);
+         }
 
-        // $this->info(PostCategory::count() . ' Post Categories Created');
+         $this->info(PostCategory::count() . ' Post Categories Created');
 
-        // $published_at = Carbon::now();
+         $published_at = Carbon::now();
 
-        // for ($x = rand(20,30); $x >= 1; $x--) {
-        //     $published = rand(1,5) < 5;
-        //     Post::create([
-        //         'post_category_id' => rand(1, count($categories)),
-        //         'title'            => "Post {$x}",
-        //         'slug'             => "post-{$x}",
-        //         'summary'          => $this->makeSummary(),
-        //         'content'          => $this->makeContent(),
-        //         'published'        => $published,
-        //         'published_at'     => $published ? $published_at : null,
-        //     ]);
+         for ($x = rand(20,30); $x >= 1; $x--) {
+             $published = rand(1,5) < 5;
+             Post::create([
+                 'post_category_id' => rand(1, count($categories)),
+                 'title'            => "Post {$x}",
+                 'slug'             => "post-{$x}",
+                 'summary'          => $this->makeSummary(),
+                 'content'          => $this->makeContent(),
+                 'published'        => $published,
+                 'published_at'     => $published ? $published_at : null,
+             ]);
 
-        //     $published_at->subDays(rand(2, 5))->subHours(rand(1, 24))->subMinutes(rand(1, 60))->subSeconds(rand(1, 60));
-        // }
+             $published_at->subDays(rand(2, 5))->subHours(rand(1, 24))->subMinutes(rand(1, 60))->subSeconds(rand(1, 60));
+         }
 
-        // $this->info(Post::count() . ' Posts Created');
+         $this->info(Post::count() . ' Posts Created');
 
         // for ($x = 1; $x <= rand(8,10); $x++) {
         //     Service::create([
