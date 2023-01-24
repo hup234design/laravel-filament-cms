@@ -17,6 +17,10 @@ class FilamentCmsSetup extends Command
 
         $stubs = $this->getStubsPath();
 
+        $this->call('vendor:publish', ['--provider' => 'Spatie\Permission\PermissionServiceProvider']);
+
+        $this->call('migrate');
+
         (new Filesystem())->copyDirectory($stubs.'/config', config_path(''));
 
         $this->runCommands([
