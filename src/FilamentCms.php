@@ -41,7 +41,7 @@ class FilamentCms
 //                        ->columnSpan(2),
                 ]),
 
-            Forms\Components\section::make('Content')
+            Forms\Components\Section::make('Content')
                 ->schema([
                     Forms\Components\RichEditor::make('content')
                         ->label(false)
