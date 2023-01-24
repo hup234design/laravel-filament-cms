@@ -28,6 +28,8 @@ class FilamentCmsSetup extends Command
         ]);
 
         copy($stubs.'/tailwind.config.js',   base_path('tailwind.config.js'));
+        copy($stubs.'/postcss.config.js',   base_path('postcss.config.js'));
+        copy($stubs.'/vite.config.js',   base_path('vite.config.js'));
         copy($stubs.'/resources/js/app.js',  resource_path('js/app.js'));
         copy($stubs.'/resources/css/app.css', resource_path('css/app.css'));
 
