@@ -3,6 +3,7 @@
 namespace Hup234design\FilamentCms;
 
 use Filament\PluginServiceProvider;
+use Hup234design\FilamentCms\Commands\FilamentCmsSeeder;
 use Spatie\LaravelPackageTools\Package;
 
 class FilamentCmsServiceProvider extends PluginServiceProvider
@@ -25,6 +26,9 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     {
         $package
             ->name('filament-cms')
+            ->hasCommands([
+                FilamentCmsSeeder::class
+            ])
             ->hasRoute('web')
             ->hasViews();
     }
