@@ -39,8 +39,8 @@ class FilamentCmsSeeder extends Command
     {
         $faker = Faker::create();
 
-        // disable foreign key checks
-        //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+//         disable foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         // truncate all tables
         DB::table('pages')->truncate();
@@ -54,7 +54,7 @@ class FilamentCmsSeeder extends Command
         DB::table('testimonials')->truncate();
 
         // enable foreign key checks
-//        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         Page::create([
             'title'   => 'Home',
