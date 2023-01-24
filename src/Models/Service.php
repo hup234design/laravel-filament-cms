@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
-class Page extends Model implements Sortable
+class Service extends Model implements Sortable
 {
     use SortableTrait;
 
     protected $guarded = [];
 
     protected $casts = [
-        'home'           => 'boolean',
+        'visible'        => 'boolean',
         'header_blocks' => 'array',
         'content_blocks' => 'array',
     ];
@@ -33,19 +33,9 @@ class Page extends Model implements Sortable
     {
         parent::boot();
 
-        // Order by home page then sort order
+        // Order by sort order
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('home', 'desc')
-                ->orderBy('sort_order', 'asc');
+            $builder->orderBy('sort_order', 'asc');
         });
-
-        // when saved update home page flag
-        static::saved(function ($model) {
-            if ($model->home) {
-                Page::whereNot('id', $model->id)->where('home', true)->update(['home' => false]);
-            }
-        });
-
     }
-
 }

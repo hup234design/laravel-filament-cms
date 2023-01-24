@@ -13,18 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('event_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->string('slug');
-            $table->longText('content')->nullable();
-            $table->json('header_blocks')->nullable();
-            $table->json('content_blocks')->nullable();
-            $table->boolean('home')->default(false);
-            $table->boolean('visible')->default(true);
+            $table->text('summary')->nullable();
             $table->integer('sort_order')->default(1);
-            $table->string('seo_title')->nullable();
-            $table->string('seo_description')->nullable();
             $table->timestamps();
         });
     }
@@ -36,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('event_categories');
     }
 };

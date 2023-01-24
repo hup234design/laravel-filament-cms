@@ -23,26 +23,26 @@
                 About
             </a>
         </li>
-{{--        <li>--}}
-{{--            <a href="{{ route('services') }}" class="text-md text-white leading-none font-medium">--}}
-{{--                Services--}}
-{{--            </a>--}}
-{{--        </li>--}}
-{{--        <li>--}}
-{{--            <a href="{{ route('projects') }}" class="text-md text-white leading-none font-medium">--}}
-{{--                Projects--}}
-{{--            </a>--}}
-{{--        </li>--}}
-{{--        <li>--}}
-{{--            <a href="{{ route('events') }}" class="text-md text-white leading-none font-medium">--}}
-{{--                Events--}}
-{{--            </a>--}}
-{{--        </li>--}}
-{{--        <li>--}}
-{{--            <a href="{{ route('testimonials') }}" class="text-md text-white leading-none font-medium">--}}
-{{--                Testimonials--}}
-{{--            </a>--}}
-{{--        </li>--}}
+        <li>
+            <a href="{{ route('services') }}" class="text-md text-white leading-none font-medium">
+                Services
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('projects') }}" class="text-md text-white leading-none font-medium">
+                Projects
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('events') }}" class="text-md text-white leading-none font-medium">
+                Events
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('testimonials') }}" class="text-md text-white leading-none font-medium">
+                Testimonials
+            </a>
+        </li>
         <li>
             <a href="{{ route('posts') }}" class="text-md text-white leading-none font-medium">
                 Posts

@@ -13,18 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
+            $table->string('name');
+            $table->string('location')->nullable();
+            $table->string('company')->nullable();
+            $table->string('job_title')->nullable();
             $table->longText('content')->nullable();
-            $table->json('header_blocks')->nullable();
-            $table->json('content_blocks')->nullable();
-            $table->boolean('home')->default(false);
+            $table->datetime('received_at');
             $table->boolean('visible')->default(true);
-            $table->integer('sort_order')->default(1);
-            $table->string('seo_title')->nullable();
-            $table->string('seo_description')->nullable();
             $table->timestamps();
         });
     }
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('testimonials');
     }
 };

@@ -1,7 +1,11 @@
 <?php
 
+use Hup234design\FilamentCms\Http\Controllers\EventController;
 use Hup234design\FilamentCms\Http\Controllers\PageController;
 use Hup234design\FilamentCms\Http\Controllers\PostController;
+use Hup234design\FilamentCms\Http\Controllers\ProjectController;
+use Hup234design\FilamentCms\Http\Controllers\ServiceController;
+use Hup234design\FilamentCms\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,24 +27,24 @@ use Illuminate\Support\Facades\Route;
      });
  });
 
-// Route::controller(ServiceController::class)->group(function () {
-//     Route::get('services/{slug}', 'service')->name('service');
-//     Route::get('services', 'index')->name('services');
-// });
+ Route::controller(ServiceController::class)->group(function () {
+     Route::get('services/{slug}', 'service')->name('service');
+     Route::get('services', 'index')->name('services');
+ });
 
-// Route::controller(ProjectController::class)->group(function () {
-//     Route::get('projects/{slug}', 'project')->name('project');
-//     Route::get('projects', 'index')->name('projects');
-// });
+ Route::controller(ProjectController::class)->group(function () {
+     Route::get('projects/{slug}', 'project')->name('project');
+     Route::get('projects', 'index')->name('projects');
+ });
 
-// Route::controller(EventController::class)->group(function () {
-//     Route::get('events/{slug}', 'event')->name('event');
-//     Route::get('events', 'index')->name('events');
-// });
+ Route::controller(EventController::class)->group(function () {
+     Route::get('events/{slug}', 'event')->name('event');
+     Route::get('events', 'index')->name('events');
+ });
 
-// Route::controller(TestimonialController::class)->group(function () {
-//     Route::get('testimonials', 'index')->name('testimonials');
-// });
+ Route::controller(TestimonialController::class)->group(function () {
+     Route::get('testimonials', 'index')->name('testimonials');
+ });
 
 Route::controller(PageController::class)->group(function () {
     Route::get('/{slug}', 'page')->name('page');

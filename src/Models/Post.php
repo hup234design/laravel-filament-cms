@@ -14,6 +14,7 @@ class Post extends Model
     protected $casts = [
         'published'      => 'boolean',
         'published_at'   => 'datetime',
+        'header_blocks' => 'array',
         'content_blocks' => 'array',
     ];
 
