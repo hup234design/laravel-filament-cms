@@ -32,6 +32,7 @@ class FilamentCmsSetup extends Command
 
         $this->call('migrate');
 
+        copy(__DIR__.'/../../config/filament-cms.php',  config_path('filament-cms.php'));
         (new Filesystem())->copyDirectory($stubs.'/config', config_path(''));
 
         $this->runCommands([

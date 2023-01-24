@@ -30,7 +30,11 @@ class FilamentCmsSeeder extends Command
 
         //$confirmed = $this->confirm('Do you wish to continue?', true);
 
-        $this->seed();
+        if (config('filament-cms.seed')) {
+            $this->seed();
+        } else {
+            $this->warn("SEEDING IS NOT ENABLED");
+        }
 
         return self::SUCCESS;
     }

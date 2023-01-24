@@ -33,7 +33,9 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('filament-cms')->hasViewComponents('cms',
+            ->name('filament-cms')
+            ->hasConfigFile()
+            ->hasViewComponents('cms',
                 AppLayout::class,
                 PostsLayout::class,
                 EventsLayout::class,
