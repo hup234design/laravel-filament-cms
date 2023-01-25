@@ -38,9 +38,9 @@ class ManageCmsSettings extends SettingsPage
                         ]),
                     Forms\Components\Tabs\Tab::make('Services')
                         ->schema([
-//                            Forms\Components\Toggle::make('services_enabled')
-//                                ->label('Enabled')
-//                                ->default(true),
+                            Forms\Components\Toggle::make('services_enabled')
+                                ->label('Enabled')
+                                ->default(true),
                             Forms\Components\TextInput::make('services_title')
                                 ->label('Title')
                                 ->required(),
@@ -50,9 +50,9 @@ class ManageCmsSettings extends SettingsPage
                         ]),
                     Forms\Components\Tabs\Tab::make('Projects')
                         ->schema([
-//                            Forms\Components\Toggle::make('projects_enabled')
-//                                ->label('Enabled')
-//                                ->default(true),
+                            Forms\Components\Toggle::make('projects_enabled')
+                                ->label('Enabled')
+                                ->default(true),
                             Forms\Components\TextInput::make('projects_title')
                                 ->label('Title')
                                 ->required(),
@@ -71,9 +71,9 @@ class ManageCmsSettings extends SettingsPage
                         ]),
                     Forms\Components\Tabs\Tab::make('Events')
                         ->schema([
-//                            Forms\Components\Toggle::make('events_enabled')
-//                                ->label('Enabled')
-//                                ->default(true),
+                            Forms\Components\Toggle::make('events_enabled')
+                                ->label('Enabled')
+                                ->default(true),
                             Forms\Components\TextInput::make('events_title')
                                 ->label('Title')
                                 ->required(),

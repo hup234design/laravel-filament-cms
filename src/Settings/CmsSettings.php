@@ -18,6 +18,9 @@ class CmsSettings extends Settings
     public string $events_title;
     public string $testimonials_slug;
     public string $testimonials_title;
+    public bool   $services_enabled;
+    public bool   $projects_enabled;
+    public bool   $events_enabled;
 
     public static function group(): string
     {
