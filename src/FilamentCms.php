@@ -35,10 +35,10 @@ class FilamentCms
 //                        ->nullable()
 //                        ->columnSpan(2),
 //
-                    Forms\Components\FileUpload::make('featured_image')
-                        ->image()
-                        ->nullable()
-                        ->columnSpan(2),
+//                    Forms\Components\FileUpload::make('featured_image')
+//                        ->image()
+//                        ->nullable()
+//                        ->columnSpan(2),
                 ]),
 
             Forms\Components\Section::make('Content')
