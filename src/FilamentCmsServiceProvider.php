@@ -11,7 +11,11 @@ use Hup234design\FilamentCms\Components\EventsLayout;
 use Hup234design\FilamentCms\Components\PostsLayout;
 use Hup234design\FilamentCms\Components\ProjectsLayout;
 use Hup234design\FilamentCms\Components\ServicesLayout;
+use Hup234design\FilamentCms\Filament\Resources\MediaLibraryResource;
 use Hup234design\FilamentCms\Filament\Resources\PageResource;
+use Intervention\Image\Image;
+use Plank\Mediable\Facades\ImageManipulator;
+use Plank\Mediable\ImageManipulation;
 use Spatie\LaravelPackageTools\Package;
 
 class FilamentCmsServiceProvider extends PluginServiceProvider
@@ -19,7 +23,8 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     protected function getResources(): array
     {
         return [
-            PageResource::class
+            PageResource::class,
+            MediaLibraryResource::class
         ];
     }
 
@@ -61,6 +66,15 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
             __DIR__ . '/../database/migrations',
             __DIR__ . '/../database/settings',
         ]);
+
+        foreach ( config('filament-cms.media.variants') as $variant=>$setting) {
+            ImageManipulator::defineVariant(
+                $variant,
+                ImageManipulation::make(function (Image $image) use ($setting) {
+                    $image->fit($setting['width'], $setting['height']);
+                })
+            );
+        }
 
         parent::packageBooted();
     }

@@ -26,9 +26,14 @@ class FilamentCmsSetup extends Command
 
         // Filament Navigations
         $this->call('vendor:publish', [
-            '--provider' => 'RyanChandler\FilamentNavigation\FilamentNavigationServiceProvider',
             '--tag' => 'filament-navigation-assets'
         ]);
+
+        // Mediable
+        $this->call('vendor:publish', [
+            '--provider' => 'Plank\Mediable\MediableServiceProvider'
+        ]);
+
 
         $this->call('migrate');
 
