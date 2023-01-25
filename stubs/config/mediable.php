@@ -23,7 +23,7 @@ return [
     /*
      * Filesystem disk to use if none is specified
      */
-    'default_disk' => 'media',
+    'default_disk' => 'public',
 
     /*
      * Filesystems that can be used for media storage
@@ -32,7 +32,6 @@ return [
      */
     'allowed_disks' => [
         'public',
-        'media',
     ],
 
     /*

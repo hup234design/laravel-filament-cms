@@ -3,6 +3,7 @@
 namespace Hup234design\FilamentCms;
 
 use Filament\Facades\Filament;
+use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Hup234design\FilamentCms\Commands\FilamentCmsSeeder;
 use Hup234design\FilamentCms\Commands\FilamentCmsSetup;
@@ -11,11 +12,21 @@ use Hup234design\FilamentCms\Components\EventsLayout;
 use Hup234design\FilamentCms\Components\PostsLayout;
 use Hup234design\FilamentCms\Components\ProjectsLayout;
 use Hup234design\FilamentCms\Components\ServicesLayout;
+use Hup234design\FilamentCms\Filament\Resources\EventCategoryResource;
+use Hup234design\FilamentCms\Filament\Resources\EventResource;
 use Hup234design\FilamentCms\Filament\Resources\MediaLibraryResource;
 use Hup234design\FilamentCms\Filament\Resources\PageResource;
+use Hup234design\FilamentCms\Filament\Resources\PostCategoryResource;
+use Hup234design\FilamentCms\Filament\Resources\PostResource;
+use Hup234design\FilamentCms\Filament\Resources\ProjectCategoryResource;
+use Hup234design\FilamentCms\Filament\Resources\ProjectResource;
+use Hup234design\FilamentCms\Filament\Resources\ServiceResource;
+use Hup234design\FilamentCms\Filament\Resources\TestimonialResource;
+use Hup234design\FilamentCms\Models\Post;
 use Intervention\Image\Image;
 use Plank\Mediable\Facades\ImageManipulator;
 use Plank\Mediable\ImageManipulation;
+use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 use Spatie\LaravelPackageTools\Package;
 
 class FilamentCmsServiceProvider extends PluginServiceProvider
@@ -24,6 +35,14 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     {
         return [
             PageResource::class,
+            PostCategoryResource::class,
+            PostResource::class,
+            ProjectCategoryResource::class,
+            ProjectResource::class,
+            ServiceResource::class,
+            TestimonialResource::class,
+            EventCategoryResource::class,
+            EventResource::class,
             MediaLibraryResource::class
         ];
     }
@@ -67,6 +86,29 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
             __DIR__ . '/../database/settings',
         ]);
 
+        NavigationResource::navigationGroup("Settings");
+        NavigationResource::navigationSort(1);
+
+        Filament::registerNavigationGroups([
+            'Post Management',
+            'Content Management',
+            'Event Management',
+            'Media',
+            'Authentication',
+            'Settings',
+        ]);
+
+        Filament::serving(function () {
+            Filament::registerUserMenuItems([
+                UserMenuItem::make()
+                    ->label('View Site')
+                    //->url(route('home'))
+                    ->url('/')
+                    ->icon('heroicon-s-cog')
+            ]);
+            Filament::registerViteTheme('resources/css/filament.css');
+        });
+
         foreach ( config('filament-cms.media.variants') as $variant=>$setting) {
             ImageManipulator::defineVariant(
                 $variant,
@@ -83,10 +125,10 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     {
         parent::boot();
 
-        Filament::serving(function () {
-            // Using Vite
-            Filament::registerViteTheme('resources/css/filament.css');
-        });
+//        Filament::serving(function () {
+//            // Using Vite
+//            Filament::registerViteTheme('resources/css/filament.css');
+//        });
     }
 
 }

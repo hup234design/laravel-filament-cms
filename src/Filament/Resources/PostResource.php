@@ -2,26 +2,28 @@
 
 namespace Hup234design\FilamentCms\Filament\Resources;
 
+use Carbon\Carbon;
 use Hup234design\FilamentCms\Facades\FilamentCms;
-use Hup234design\FilamentCms\Filament\Resources\PageResource\Pages;
-use Hup234design\FilamentCms\Filament\Resources\PageResource\RelationManagers;
-use Hup234design\FilamentCms\Models\Page;
+use Hup234design\FilamentCms\Filament\Resources\PostResource\Pages;
+use Hup234design\FilamentCms\Filament\Resources\PostResource\RelationManagers;
+use Hup234design\FilamentCms\Models\Post;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Hup234design\FilamentCms\Models\PostCategory;
+use Illuminate\Database\Eloquent\Builder;
 
-class PageResource extends Resource
+class PostResource extends Resource
 {
-    protected static ?string $model = Page::class;
+    protected static ?string $model = Post::class;
 
-    protected static ?string $navigationGroup = 'Content Management';
+    protected static ?string $navigationGroup = 'Post Management';
 
     protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
 
     public static function form(Form $form): Form
     {
@@ -29,21 +31,23 @@ class PageResource extends Resource
             ->schema([
                 Forms\Components\Group::make()
                     ->schema(
-                        FilamentCms::globalFormFields(Page::class, false)
+                        FilamentCms::globalFormFields(Post::class, true)
                     )
                     ->columnSpan(['lg' => 3]),
 
                 Forms\Components\Group::make()
                     ->schema([
+                        Forms\Components\Select::make('post_category_id')
+                            ->label('Category')
+                            ->options(PostCategory::all()->pluck('name', 'id'))
+                            ->nullable(),
                         Forms\Components\Card::make()
                             ->schema([
-                                Forms\Components\Toggle::make('home')
-                                    ->label('Home page.')
-                                    ->default(false)
-                                    ->lazy()
-                                    ->afterStateUpdated(fn ($state, callable $set) => $state ? $set('visible', true) : null),
-                                Forms\Components\Toggle::make('visible')
-                                    ->label('Visible.')
+                                Forms\Components\DateTimePicker::make('published_at')
+                                    ->label('Published At')
+                                    ->default(Carbon::now())
+                                    ->required(),
+                                Forms\Components\Toggle::make('published')
                                     ->default(true),
                             ]),
                         FilamentCms::seoFormFields()
@@ -59,16 +63,16 @@ class PageResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\IconColumn::make('home')
+                Tables\Columns\TextColumn::make('post_category.name')->label('Category'),
+                Tables\Columns\IconColumn::make('published')
                     ->boolean(),
-                Tables\Columns\IconColumn::make('visible')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('published_at')->label('Published At')->datetime(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('published')
+                    ->query(fn (Builder $query): Builder => $query->where('published', true)),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -86,10 +90,9 @@ class PageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPages::route('/'),
-            'create' => Pages\CreatePage::route('/create'),
-            'view' => Pages\ViewPage::route('/{record}'),
-            'edit' => Pages\EditPage::route('/{record}/edit'),
+            'index' => Pages\ListPosts::route('/'),
+            'create' => Pages\CreatePost::route('/create'),
+            'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
     }
 }

@@ -6,10 +6,26 @@ use Plank\Mediable\Media;
 
 class MediaLibrary extends Media
 {
-    protected $guarded = [];
+    protected $guarded = [
+        'id',
+        'disk',
+        'directory',
+        'filename',
+        'extension',
+        'size',
+        'mime_type',
+        'aggregate_type',
+        'variant_name',
+        'original_media_id',
+        'original_filename',
+        'alt',
+        'caption',
+        'description',
+        'crop_data',
+    ];
 
     protected $casts = [
-        'size'      => 'int',
+        'size' => 'int',
         'crop_data' => 'array',
     ];
 

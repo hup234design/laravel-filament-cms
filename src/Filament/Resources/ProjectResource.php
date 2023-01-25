@@ -2,26 +2,27 @@
 
 namespace Hup234design\FilamentCms\Filament\Resources;
 
+use Carbon\Carbon;
 use Hup234design\FilamentCms\Facades\FilamentCms;
-use Hup234design\FilamentCms\Filament\Resources\PageResource\Pages;
-use Hup234design\FilamentCms\Filament\Resources\PageResource\RelationManagers;
-use Hup234design\FilamentCms\Models\Page;
+use Hup234design\FilamentCms\Filament\Resources\ProjectResource\Pages;
+use Hup234design\FilamentCms\Filament\Resources\ProjectResource\RelationManagers;
+use Hup234design\FilamentCms\Models\Project;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Hup234design\FilamentCms\Models\ProjectCategory;
 
-class PageResource extends Resource
+class ProjectResource extends Resource
 {
-    protected static ?string $model = Page::class;
+    protected static ?string $model = Project::class;
 
     protected static ?string $navigationGroup = 'Content Management';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
 
     public static function form(Form $form): Form
     {
@@ -29,21 +30,23 @@ class PageResource extends Resource
             ->schema([
                 Forms\Components\Group::make()
                     ->schema(
-                        FilamentCms::globalFormFields(Page::class, false)
+                        FilamentCms::globalFormFields(Project::class, true)
                     )
                     ->columnSpan(['lg' => 3]),
 
                 Forms\Components\Group::make()
                     ->schema([
+                        Forms\Components\Select::make('project_category_id')
+                            ->label('Category')
+                            ->options(ProjectCategory::all()->pluck('name', 'id'))
+                            ->nullable(),
                         Forms\Components\Card::make()
                             ->schema([
-                                Forms\Components\Toggle::make('home')
-                                    ->label('Home page.')
-                                    ->default(false)
-                                    ->lazy()
-                                    ->afterStateUpdated(fn ($state, callable $set) => $state ? $set('visible', true) : null),
+                                Forms\Components\DatePicker::make('date')
+                                    ->label('Date')
+                                    ->default(Carbon::now())
+                                    ->required(),
                                 Forms\Components\Toggle::make('visible')
-                                    ->label('Visible.')
                                     ->default(true),
                             ]),
                         FilamentCms::seoFormFields()
@@ -59,8 +62,8 @@ class PageResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\IconColumn::make('home')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('project_category.name')->label('Category'),
+                Tables\Columns\TextColumn::make('date')->date(),
                 Tables\Columns\IconColumn::make('visible')
                     ->boolean(),
             ])
@@ -68,7 +71,6 @@ class PageResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -86,10 +88,9 @@ class PageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPages::route('/'),
-            'create' => Pages\CreatePage::route('/create'),
-            'view' => Pages\ViewPage::route('/{record}'),
-            'edit' => Pages\EditPage::route('/{record}/edit'),
+            'index' => Pages\ListProjects::route('/'),
+            'create' => Pages\CreateProject::route('/create'),
+            'edit' => Pages\EditProject::route('/{record}/edit'),
         ];
     }
 }
