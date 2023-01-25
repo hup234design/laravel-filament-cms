@@ -16,7 +16,9 @@ use Hup234design\FilamentCms\Models\Service;
 use Hup234design\FilamentCms\Models\Testimonial;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Str;
+use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class FilamentCmsSeeder extends Command
 {
@@ -240,6 +242,123 @@ class FilamentCmsSeeder extends Command
          }
 
          $this->info(Project::count() . ' Projects Created');
+
+
+        if( Schema::hasTable('navigations') )
+        {
+            Navigation::create([
+                'name'   => 'Header Menu',
+                'handle' => 'header-menu',
+                'items'  => [
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Home',
+                        'type'     => 'home',
+                        'data'     => [],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'About',
+                        'type'     => 'page',
+                        'data'     => [
+                            'slug' => 'about'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Services',
+                        'type'     => 'index-page',
+                        'data'     => [
+                            'slug' => 'services'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Projects',
+                        'type'     => 'index-page',
+                        'data'     => [
+                            'slug' => 'projects'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Events',
+                        'type'     => 'index-page',
+                        'data'     => [
+                            'slug' => 'events'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Testimonials',
+                        'type'     => 'index-page',
+                        'data'     => [
+                            'slug' => 'testimonials'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Posts',
+                        'type'     => 'index-page',
+                        'data'     => [
+                            'slug' => 'posts'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Contact',
+                        'type'     => 'page',
+                        'data'     => [
+                            'slug' => 'contact'
+                        ],
+                        'children' => [],
+                    ]
+                ]
+            ]);
+            Navigation::create([
+                'name'   => 'Footer Menu',
+                'handle' => 'footer-menu',
+                'items'  => [
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Home',
+                        'type'     => 'home',
+                        'data'     => [],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Terms & Conditions',
+                        'type'     => 'page',
+                        'data'     => [
+                            'slug' => 'terms-conditions'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Privacy Policy',
+                        'type'     => 'page',
+                        'data'     => [
+                            'slug' => 'privacy-policy'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Cookie Policy',
+                        'type'     => 'page',
+                        'data'     => [
+                            'slug' => 'cookie-policy'
+                        ],
+                        'children' => [],
+                    ],
+                    (string) \Illuminate\Support\Str::uuid() => [
+                        'label'    => 'Contact Us',
+                        'type'     => 'page',
+                        'data'     => [
+                            'slug' => 'contact'
+                        ],
+                        'children' => [],
+                    ]
+                ]
+            ]);
+        }
 
     }
 

@@ -24,7 +24,7 @@
                     @php
                         switch($item['type']) {
                             case "page":
-                                $href = route('page', $item['data']['slug']);
+                                $href = $item['data']['slug'] == 'home' ? route('home') : route('page', $item['data']['slug']);
                                 break;
                             default:
                                 $href = route( $item['data']['slug'] );
@@ -94,7 +94,7 @@
                             @php
                                 switch($item['type']) {
                                     case "page":
-                                        $href = route('page', $item['data']['slug']);
+                                        $href = $item['data']['slug'] == 'home' ? route('home') : route('page', $item['data']['slug']);
                                         break;
                                     default:
                                         $href = route( $item['data']['slug'] );
