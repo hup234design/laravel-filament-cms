@@ -28,12 +28,12 @@ class AppLayout extends Component
      */
     public function render()
     {
-        //$header_menu = FilamentNavigation::get('header-menu');
-        //$footer_menu = FilamentNavigation::get('footer-menu');
+        $header_menu = FilamentNavigation::get('header-menu');
+        $footer_menu = FilamentNavigation::get('footer-menu');
 
         return view('filament-cms::layouts.'.$this->layout, [
-            //'header_menu' => $header_menu?->items,
-            //'footer_menu' => $footer_menu?->items,
+            'header_menu' => $header_menu?->items,
+            'footer_menu' => $footer_menu?->items,
         ]);
     }
 }

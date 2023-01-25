@@ -3,6 +3,7 @@
 namespace Hup234design\FilamentCms;
 
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Select;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Hup234design\FilamentCms\Commands\FilamentCmsSeeder;
@@ -23,10 +24,14 @@ use Hup234design\FilamentCms\Filament\Resources\ProjectCategoryResource;
 use Hup234design\FilamentCms\Filament\Resources\ProjectResource;
 use Hup234design\FilamentCms\Filament\Resources\ServiceResource;
 use Hup234design\FilamentCms\Filament\Resources\TestimonialResource;
+use Hup234design\FilamentCms\Models\Page;
 use Hup234design\FilamentCms\Models\Post;
+use Hup234design\FilamentCms\Settings\CmsSettings;
+use Illuminate\Support\Facades\Schema;
 use Intervention\Image\Image;
 use Plank\Mediable\Facades\ImageManipulator;
 use Plank\Mediable\ImageManipulation;
+use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 use Spatie\LaravelPackageTools\Package;
 
@@ -86,6 +91,32 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
             __DIR__ . '/../database/migrations',
             __DIR__ . '/../database/settings',
         ]);
+
+        // filament navigation
+        if (Schema::hasTable('pages')) {
+            FilamentNavigation::addItemType('Page', [
+                Select::make('slug')
+                    ->label('Pages')
+                    ->options(
+                        collect([
+                            'home' => 'Home Page',
+                        ])->merge(
+                            Page::where('home', false)->where('visible', true)->pluck('title', 'slug')
+                        )
+                    )
+            ]);
+            FilamentNavigation::addItemType('Index Pages', [
+                Select::make('slug')
+                    ->label('Index Pages')
+                    ->options([
+                            app(CmsSettings::class)->services_slug => app(CmsSettings::class)->services_title,
+                            app(CmsSettings::class)->projects_slug => app(CmsSettings::class)->projects_title,
+                            app(CmsSettings::class)->events_slug => app(CmsSettings::class)->events_title,
+                            app(CmsSettings::class)->testimonials_slug => app(CmsSettings::class)->testimonials_title,
+                            app(CmsSettings::class)->posts_slug => app(CmsSettings::class)->posts_title,
+                        ])
+            ]);
+        }
 
         NavigationResource::navigationGroup("Settings");
         NavigationResource::navigationSort(1);

@@ -12,69 +12,33 @@
         {{ config('app.name') }}
     </a>
 
-    <ul class="flex items-center justify-center gap-8">
-        <li>
-            <a href="{{ route('home') }}" class="text-md text-white leading-none font-medium">
-                Home
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('page', 'about') }}" class="text-md text-white leading-none font-medium">
-                About
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('services') }}" class="text-md text-white leading-none font-medium">
-                Services
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('projects') }}" class="text-md text-white leading-none font-medium">
-                Projects
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('events') }}" class="text-md text-white leading-none font-medium">
-                Events
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('testimonials') }}" class="text-md text-white leading-none font-medium">
-                Testimonials
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('posts') }}" class="text-md text-white leading-none font-medium">
-                Posts
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('page', 'contact') }}" class="text-md text-white leading-none font-medium">
-                Contact
-            </a>
-        </li>
+    @if($header_menu)
+    <ul class="flex items-center justify-center gap-16">
+        @foreach( $header_menu as $item )
+            @if($item['type'] == 'external-link')
+                <a href="{{ $item['data']['url'] }}" target="{{ $item['data']['target'] }}" class="text-md text-white leading-none font-medium">
+                    {{ $item['label'] }}
+                </a>
+            @else
+                <li>
+                    @php
+                        switch($item['type']) {
+                            case "page":
+                                $href = route('page', $item['data']['slug']);
+                                break;
+                            default:
+                                $href = route( $item['data']['slug'] );
+                                break;
+                        }
+                    @endphp
+                    <a href="{{ $href }}" class="text-md text-white leading-none font-medium">
+                        {{ $item['label'] }}
+                    </a>
+                </li>
+            @endif
+        @endforeach
     </ul>
-{{--    @if($header_menu)--}}
-{{--    <ul class="flex items-center justify-center gap-16">--}}
-{{--        @foreach( $header_menu as $item )--}}
-{{--            <li>--}}
-{{--                @php--}}
-{{--                    switch($item['type']) {--}}
-{{--                        case "page":--}}
-{{--                            $href = route('page', $item['data']['slug']);--}}
-{{--                            break;--}}
-{{--                        default:--}}
-{{--                            $href = route($item['type']);--}}
-{{--                            break;--}}
-{{--                    }--}}
-{{--                @endphp--}}
-{{--                <a href="{{ $href }}" class="text-md text-white leading-none font-medium">--}}
-{{--                    {{ $item['label'] }}--}}
-{{--                </a>--}}
-{{--            </li>--}}
-{{--        @endforeach--}}
-{{--    </ul>--}}
-{{--    @endif--}}
+    @endif
 </header>
 
 @hasSection('banner')
@@ -118,64 +82,34 @@
             {{ config('app.name') }}
         </div>
 
-        <ul class="flex items-center justify-center gap-8">
-            <li>
-                <a href="{{ route('home') }}" class="text-sm text-white leading-none font-medium lowercase">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('page', 'terms-conditions') }}" class="text-sm text-white leading-none font-medium lowercase">
-                    Terms & Conditions
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('page', 'privacy-policy') }}" class="text-sm text-white leading-none font-medium lowercase">
-                    Privacy Policy
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('page', 'cookie-policy') }}" class="text-sm text-white leading-none font-medium lowercase">
-                    Cookie Policy
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('page', 'contact') }}" class="text-sm text-white leading-none font-medium lowercase">
-                    Contact
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/admin') }}" class="text-sm text-white leading-none font-medium lowercase">
-                    Admin
-                </a>
-            </li>
-        </ul>
-{{--        <ul class="flex items-center justify-center gap-16">--}}
-{{--            @if($footer_menu)--}}
-{{--                @foreach( $footer_menu as $item )--}}
-{{--                    <li>--}}
-{{--                        @php--}}
-{{--                            switch($item['type']) {--}}
-{{--                                case "page":--}}
-{{--                                    $href = route('page', $item['data']['slug']);--}}
-{{--                                    break;--}}
-{{--                                default:--}}
-{{--                                    $href = route($item['type']);--}}
-{{--                                    break;--}}
-{{--                            }--}}
-{{--                        @endphp--}}
-{{--                        <a href="{{ $href }}" class="text-sm text-white leading-none font-medium lowercase">--}}
-{{--                            {{ $item['label'] }}--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endforeach--}}
-{{--                <li>--}}
-{{--                    <a href="{{ url('/admin') }}" class="text-sm text-white leading-none font-medium lowercase">--}}
-{{--                        Admin--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--        @endif--}}
+        @if($footer_menu)
+            <ul class="flex items-center justify-center gap-8">
+                @foreach( $footer_menu as $item )
+                    @if($item['type'] == 'external-link')
+                        <a href="{{ $item['data']['url'] }}" target="{{ $item['data']['target'] }}" class="text-sm text-white leading-none font-medium lowercase">
+                            {{ $item['label'] }}
+                        </a>
+                    @else
+                        <li>
+                            @php
+                                switch($item['type']) {
+                                    case "page":
+                                        $href = route('page', $item['data']['slug']);
+                                        break;
+                                    default:
+                                        $href = route( $item['data']['slug'] );
+                                        break;
+                                }
+                            @endphp
+                            <a href="{{ $href }}" class="text-sm text-white leading-none font-medium lowercase">
+                                {{ $item['label'] }}
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        @endif
+
         <div class="text-center text-sm text-gray-200">
             Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
         </div>
