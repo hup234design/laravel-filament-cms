@@ -24,6 +24,12 @@ class FilamentCmsSetup extends Command
             '--provider' => 'Spatie\Permission\PermissionServiceProvider'
         ]);
 
+        // Spatie Settings
+        $this->call('vendor:publish', [
+            '--provider' => 'Spatie\LaravelSettings\LaravelSettingsServiceProvider',
+            '--tag' => 'migrations'
+        ]);
+
         // Filament Navigations
         $this->call('vendor:publish', [
             '--tag' => 'filament-navigation-assets'

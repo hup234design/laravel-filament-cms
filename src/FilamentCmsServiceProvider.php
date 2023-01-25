@@ -12,6 +12,7 @@ use Hup234design\FilamentCms\Components\EventsLayout;
 use Hup234design\FilamentCms\Components\PostsLayout;
 use Hup234design\FilamentCms\Components\ProjectsLayout;
 use Hup234design\FilamentCms\Components\ServicesLayout;
+use Hup234design\FilamentCms\Filament\Pages\ManageCmsSettings;
 use Hup234design\FilamentCms\Filament\Resources\EventCategoryResource;
 use Hup234design\FilamentCms\Filament\Resources\EventResource;
 use Hup234design\FilamentCms\Filament\Resources\MediaLibraryResource;
@@ -50,7 +51,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
     protected function getPages(): array
     {
         return [
-            //
+            ManageCmsSettings::class,
         ];
     }
 
