@@ -59,6 +59,10 @@ class FilamentCmsSeeder extends Command
         DB::table('event_categories')->truncate();
         DB::table('testimonials')->truncate();
 
+        if( Schema::hasTable('navigations') ) {
+            DB::table('navigations')->truncate();
+        }
+
         // enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
