@@ -118,3 +118,7 @@
 
 </body>
 </html>
+
+
+
+{"c02a8bee-674d-432f-b1c8-4776bfb4f66c":{"label":"Home","type":"page","data":{"slug":"home"},"children":[]},"3b6d5f6c-a9f5-44fa-ac9c-34ea80390e08":{"label":"News","type":"index-page","data":{"slug":"posts"},"children":[]},"441fb505-4ac7-406f-9531-b9f71da3f37c":{"label":"Contact","type":"page","data":{"slug":"contact-us"},"children":[]},"469bea1e-adbb-41c6-8d13-8ca81bcd1361":{"label":"Blocks Demo","type":"page","data":{"slug":"blocks"},"children":[]}}

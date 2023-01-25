@@ -252,8 +252,10 @@ class FilamentCmsSeeder extends Command
                 'items'  => [
                     (string) \Illuminate\Support\Str::uuid() => [
                         'label'    => 'Home',
-                        'type'     => 'home',
-                        'data'     => [],
+                        'type'     => 'page',
+                        'data'     => [
+                            'slug' => 'home'
+                        ],
                         'children' => [],
                     ],
                     (string) \Illuminate\Support\Str::uuid() => [
@@ -320,8 +322,10 @@ class FilamentCmsSeeder extends Command
                 'items'  => [
                     (string) \Illuminate\Support\Str::uuid() => [
                         'label'    => 'Home',
-                        'type'     => 'home',
-                        'data'     => [],
+                        'type'     => 'page',
+                        'data'     => [
+                            'slug' => 'home'
+                        ],
                         'children' => [],
                     ],
                     (string) \Illuminate\Support\Str::uuid() => [
