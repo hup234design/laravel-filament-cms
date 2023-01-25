@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean('published')->default(false);
             $table->datetime('published_at')->nullable();
             $table->string('seo_title')->nullable();
-            $table->string('seo_description')->nullable();
+            $table->text('seo_description')->nullable();
             $table->timestamps();
         });
     }

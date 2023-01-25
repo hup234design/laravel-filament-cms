@@ -27,7 +27,7 @@ return new class extends Migration
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->string('seo_title')->nullable();
-            $table->string('seo_description')->nullable();
+            $table->text('seo_description')->nullable();
             $table->timestamps();
         });
     }

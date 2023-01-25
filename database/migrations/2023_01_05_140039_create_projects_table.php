@@ -26,7 +26,7 @@ return new class extends Migration
             $table->boolean('visible')->default(false);
             $table->datetime('date')->nullable();
             $table->string('seo_title')->nullable();
-            $table->string('seo_description')->nullable();
+            $table->text('seo_description')->nullable();
             $table->timestamps();
         });
     }

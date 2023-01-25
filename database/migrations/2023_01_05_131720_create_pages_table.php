@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('visible')->default(true);
             $table->integer('sort_order')->default(1);
             $table->string('seo_title')->nullable();
-            $table->string('seo_description')->nullable();
+            $table->text('seo_description')->nullable();
             $table->timestamps();
         });
     }
