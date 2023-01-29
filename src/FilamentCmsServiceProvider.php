@@ -13,6 +13,14 @@ use Hup234design\FilamentCms\Components\EventsLayout;
 use Hup234design\FilamentCms\Components\PostsLayout;
 use Hup234design\FilamentCms\Components\ProjectsLayout;
 use Hup234design\FilamentCms\Components\ServicesLayout;
+use Hup234design\FilamentCms\Filament\Blocks\ButtonsBlock;
+use Hup234design\FilamentCms\Filament\Blocks\CallToActionBlock;
+use Hup234design\FilamentCms\Filament\Blocks\EventBlock;
+use Hup234design\FilamentCms\Filament\Blocks\GalleryBlock;
+use Hup234design\FilamentCms\Filament\Blocks\ImageBlock;
+use Hup234design\FilamentCms\Filament\Blocks\ProjectBlock;
+use Hup234design\FilamentCms\Filament\Blocks\RichEditorBlock;
+use Hup234design\FilamentCms\Filament\Blocks\TestimonialBlock;
 use Hup234design\FilamentCms\Filament\Pages\ManageCmsSettings;
 use Hup234design\FilamentCms\Filament\Resources\EventCategoryResource;
 use Hup234design\FilamentCms\Filament\Resources\EventResource;
@@ -29,6 +37,7 @@ use Hup234design\FilamentCms\Models\Post;
 use Hup234design\FilamentCms\Settings\CmsSettings;
 use Illuminate\Support\Facades\Schema;
 use Intervention\Image\Image;
+use Livewire\Livewire;
 use Plank\Mediable\Facades\ImageManipulator;
 use Plank\Mediable\ImageManipulation;
 use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
@@ -49,7 +58,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
             TestimonialResource::class,
             EventCategoryResource::class,
             EventResource::class,
-            MediaLibraryResource::class
+            MediaLibraryResource::class,
         ];
     }
 
@@ -87,6 +96,8 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
 
     public function packageBooted(): void
     {
+        parent::packageBooted();
+
         $this->loadMigrationsFrom([
             __DIR__ . '/../database/migrations',
             __DIR__ . '/../database/settings',
@@ -125,6 +136,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
             'Post Management',
             'Content Management',
             'Event Management',
+            'Custom Content',
             'Media',
             'Authentication',
             'Settings',
@@ -150,7 +162,14 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
             );
         }
 
-        parent::packageBooted();
+        Livewire::component('rich-editor-block', RichEditorBlock::class);
+        Livewire::component('image-block', ImageBlock::class);
+        Livewire::component('testimonial-block', TestimonialBlock::class);
+        Livewire::component('buttons-block', ButtonsBlock::class);
+        Livewire::component('call-to-action-block', CallToActionBlock::class);
+        Livewire::component('event-block', EventBlock::class);
+        Livewire::component('project-block', ProjectBlock::class);
+        Livewire::component('gallery-block', GalleryBlock::class);
     }
 
     public function boot(): void

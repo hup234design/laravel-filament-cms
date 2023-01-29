@@ -3,6 +3,8 @@
 namespace Hup234design\FilamentCms\Filament\Resources;
 
 use Hup234design\FilamentCms\Facades\FilamentCms;
+use Hup234design\FilamentCms\Filament\Blocks\ImageBlock;
+use Hup234design\FilamentCms\Filament\Blocks\RichEditorBlock;
 use Hup234design\FilamentCms\Filament\Resources\PageResource\Pages;
 use Hup234design\FilamentCms\Filament\Resources\PageResource\RelationManagers;
 use Hup234design\FilamentCms\Models\Page;

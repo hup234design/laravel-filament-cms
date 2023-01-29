@@ -3,6 +3,15 @@
 return [
     'seed' => env('FILAMENT_CMS_SEED', false),
 
+    'custom_blocks' => [
+        'content' => [
+            //
+        ],
+        'header' => [
+            //
+        ]
+    ],
+
     'media' => [
         'variants' => [
             'thumbnail' => [

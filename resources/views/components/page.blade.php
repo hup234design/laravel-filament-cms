@@ -14,12 +14,22 @@
 {{--    @endif--}}
 @endsection
 
-<div class="container">
+{{--<div class="container">--}}
 {{--    @if($record->hasMedia('featured_image'))--}}
 {{--        <img src="{{ $record->firstMedia('featured_image')->getUrl() }}" class="w-full">--}}
 {{--    @endif--}}
 {{--    <h1>--}}
 {{--        {{ $record->title }}--}}
 {{--    </h1>--}}
-    {!! $record->content !!}
-</div>
+{{--    {!! $record->content !!}--}}
+{{--</div>--}}
+
+@if( trim($record->content) )
+    <div class="container">
+        {!! $record->content !!}
+    </div>
+@endif
+
+@if( $record->content_blocks )
+    <x-filament-cms::blocks :blocks="$record->content_blocks" />
+@endif

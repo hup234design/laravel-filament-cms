@@ -3,6 +3,15 @@
 namespace Hup234design\FilamentCms;
 
 use Filament\Forms;
+use Hup234design\FilamentCms\Filament\Blocks\ButtonsBlock;
+use Hup234design\FilamentCms\Filament\Blocks\CallToActionBlock;
+use Hup234design\FilamentCms\Filament\Blocks\EventBlock;
+use Hup234design\FilamentCms\Filament\Blocks\GalleryBlock;
+use Hup234design\FilamentCms\Filament\Blocks\HeroBlock;
+use Hup234design\FilamentCms\Filament\Blocks\ImageBlock;
+use Hup234design\FilamentCms\Filament\Blocks\ProjectBlock;
+use Hup234design\FilamentCms\Filament\Blocks\RichEditorBlock;
+use Hup234design\FilamentCms\Filament\Blocks\TestimonialBlock;
 use Illuminate\Support\Str;
 
 class FilamentCms
@@ -41,6 +50,13 @@ class FilamentCms
 //                        ->columnSpan(2),
                 ]),
 
+            Forms\Components\Section::make('Header Blocks')
+                ->schema([
+                    FilamentCms::headerBlocks(),
+                ])
+                ->collapsible()
+                ->collapsed(true),
+
             Forms\Components\Section::make('Content')
                 ->schema([
                     Forms\Components\RichEditor::make('content')
@@ -48,7 +64,15 @@ class FilamentCms
                         ->nullable()
                         ->columnSpan(2),
                 ])
-                ->collapsible(),
+                ->collapsible()
+                ->collapsed(true),
+
+            Forms\Components\Section::make('Content Blocks')
+                ->schema([
+                    FilamentCms::contentBlocks(),
+                ])
+                ->collapsible()
+                ->collapsed(true),
         ];
     }
 
@@ -65,5 +89,68 @@ class FilamentCms
                     ->nullable(),
             ])
             ->collapsed(false);
+    }
+
+    public function headerBlocks()
+    {
+        $availableBlocks = array_merge(
+            [
+                HeroBlock::class,
+            ],
+            config('filament-cms.custom_blocks.header')
+        );
+
+        $blocks = [];
+
+        foreach ($availableBlocks as $block) {
+            $blocks[] = Forms\Components\Builder\Block::make($block::name())
+                ->label($block::title())
+                ->schema(array_merge(
+                    [
+                        Forms\Components\TextInput::make('heading')->nullable()
+                    ],
+                    $block::schema()
+                ));
+        }
+
+        return Forms\Components\Builder::make('header_blocks')
+            ->disableLabel()
+            ->blocks($blocks);
+    }
+
+    public function contentBlocks()
+    {
+        $availableBlocks = array_merge(
+            [
+                RichEditorBlock::class,
+                ImageBlock::class,
+                TestimonialBlock::class,
+                ButtonsBlock::class,
+                CallToActionBlock::class,
+                EventBlock::class,
+                ProjectBlock::class,
+                GalleryBlock::class,
+            ],
+            config('filament-cms.custom_blocks.content')
+        );
+
+        $blocks = [];
+
+        foreach ($availableBlocks as $block) {
+            $blocks[] = Forms\Components\Builder\Block::make($block::name())
+                ->label($block::title())
+                ->schema(array_merge(
+                    [
+                        Forms\Components\TextInput::make('heading')->nullable(),
+                        Forms\Components\Toggle::make('display_heading')->default(true),
+                    ],
+                    $block::schema()
+                ));
+        }
+
+        return Forms\Components\Builder::make('content_blocks')
+            ->disableLabel()
+            ->blocks($blocks)
+            ->collapsible();;
     }
 }

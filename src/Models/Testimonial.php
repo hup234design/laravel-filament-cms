@@ -19,6 +19,16 @@ class Testimonial extends Model
         return $query->where('visible', true);
     }
 
+    public function getTitleAttribute(): string
+    {
+        return implode(" | ", array_filter([
+            $this->name,
+            $this->location,
+            $this->company,
+            $this->job_title,
+        ]));
+    }
+
     protected static function boot()
     {
         parent::boot();

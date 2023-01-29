@@ -40,6 +40,8 @@ class FilamentCmsSetup extends Command
             '--provider' => 'Plank\Mediable\MediableServiceProvider'
         ]);
 
+        // Ray
+        $this->call('ray:publish-config');
 
         $this->call('migrate');
 

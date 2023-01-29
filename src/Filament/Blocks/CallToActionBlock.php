@@ -1,0 +1,32 @@
+<?php
+
+namespace Hup234design\FilamentCms\Filament\Blocks;
+
+use Filament\Forms;
+use Hup234design\FilamentCms\Contracts\ContentBlockTemplate;
+use Illuminate\View\View;
+
+class CallToActionBlock extends ContentBlock implements ContentBlockTemplate
+{
+    public static function name(): string
+    {
+        return 'call-to-action-block';
+    }
+
+    public static function title(): string
+    {
+        return 'Call To Action Block';
+    }
+
+    public static function schema(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public function render(): View
+    {
+        return view('filament-cms::livewire.blocks.call-to-action-block');
+    }
+}
