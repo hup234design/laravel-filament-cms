@@ -2,7 +2,7 @@
 
     @section('banner')
         @parent
-        SERVICES
+        {{ app(\Hup234design\FilamentCms\Settings\CmsSettings::class)->services_title }}
     @endsection
 
     @foreach($services as $service)

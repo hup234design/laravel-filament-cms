@@ -19,7 +19,7 @@
         <img src="{{ $record->firstMedia('featured_image')->findVariant('featured')->getUrl() }}" class="w-full">
     @endif
     {!! $record->content !!}
-</div>>
+</div>
 
 {{--@if( $record->content_blocks )--}}
 {{--    <x-filament-cms::blocks :blocks="$record->content_blocks" />--}}

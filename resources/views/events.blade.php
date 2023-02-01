@@ -2,7 +2,7 @@
 
     @section('banner')
         @parent
-        EVENTS
+        {{ app(\Hup234design\FilamentCms\Settings\CmsSettings::class)->events_title }}
     @endsection
 
     @foreach($events as $event)

@@ -11,6 +11,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Hup234design\FilamentCms\Settings\CmsSettings;
 
 class ServiceResource extends Resource
 {
@@ -21,6 +22,11 @@ class ServiceResource extends Resource
     protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return app(CmsSettings::class)->services_enabled;
+    }
 
     public static function form(Form $form): Form
     {

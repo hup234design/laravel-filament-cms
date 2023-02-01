@@ -6,6 +6,7 @@ use Hup234design\FilamentCms\Http\Controllers\PostController;
 use Hup234design\FilamentCms\Http\Controllers\ProjectController;
 use Hup234design\FilamentCms\Http\Controllers\ServiceController;
 use Hup234design\FilamentCms\Http\Controllers\TestimonialController;
+use Hup234design\FilamentCms\Settings\CmsSettings;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,30 +21,37 @@ use Illuminate\Support\Facades\Route;
 */
 
  Route::controller(PostController::class)->group(function () {
-     //Route::prefix(app(CmsSettings::class)->posts_slug)->group(function() {
-     Route::prefix('posts')->group(function() {
+     Route::prefix(app(CmsSettings::class)->posts_slug)->group(function() {
          Route::get('/{slug}', 'post')->name('post');
          Route::get('/', 'index')->name('posts');
      });
  });
 
  Route::controller(ServiceController::class)->group(function () {
-     Route::get('services/{slug}', 'service')->name('service');
-     Route::get('services', 'index')->name('services');
+     Route::prefix(app(CmsSettings::class)->services_slug)->group(function() {
+         Route::get('//{slug}', 'service')->name('service');
+         Route::get('/', 'index')->name('services');
+     });
  });
 
  Route::controller(ProjectController::class)->group(function () {
-     Route::get('projects/{slug}', 'project')->name('project');
-     Route::get('projects', 'index')->name('projects');
+     Route::prefix(app(CmsSettings::class)->projects_slug)->group(function() {
+         Route::get('/{slug}', 'project')->name('project');
+         Route::get('/', 'index')->name('projects');
+     });
  });
 
  Route::controller(EventController::class)->group(function () {
-     Route::get('events/{slug}', 'event')->name('event');
-     Route::get('events', 'index')->name('events');
+     Route::prefix(app(CmsSettings::class)->events_slug)->group(function() {
+         Route::get('/{slug}', 'event')->name('event');
+         Route::get('/', 'index')->name('events');
+     });
  });
 
  Route::controller(TestimonialController::class)->group(function () {
-     Route::get('testimonials', 'index')->name('testimonials');
+     Route::prefix(app(CmsSettings::class)->testimonials_slug)->group(function() {
+         Route::get('/', 'index')->name('testimonials');
+     });
  });
 
 Route::controller(PageController::class)->group(function () {

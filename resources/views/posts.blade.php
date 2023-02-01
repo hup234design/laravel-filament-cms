@@ -2,7 +2,7 @@
 
     @section('banner')
         @parent
-        POSTS
+        {{ app(\Hup234design\FilamentCms\Settings\CmsSettings::class)->posts_title }}
     @endsection
 
     @foreach($posts as $post)

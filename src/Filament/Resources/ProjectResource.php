@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Hup234design\FilamentCms\Models\ProjectCategory;
+use Hup234design\FilamentCms\Settings\CmsSettings;
 
 class ProjectResource extends Resource
 {
@@ -23,6 +24,11 @@ class ProjectResource extends Resource
     protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return app(CmsSettings::class)->projects_enabled;
+    }
 
     public static function form(Form $form): Form
     {

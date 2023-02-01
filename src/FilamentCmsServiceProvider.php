@@ -4,6 +4,8 @@ namespace Hup234design\FilamentCms;
 
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\UserMenuItem;
 use Filament\PluginServiceProvider;
 use Hup234design\FilamentCms\Commands\FilamentCmsSeeder;

@@ -2,7 +2,7 @@
 
     @section('banner')
         @parent
-        PROJECTS
+        {{ app(\Hup234design\FilamentCms\Settings\CmsSettings::class)->projects_title }}
     @endsection
 
     @foreach($projects as $project)

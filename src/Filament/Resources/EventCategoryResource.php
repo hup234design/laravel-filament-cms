@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Hup234design\FilamentCms\Models\EventCategory;
+use Hup234design\FilamentCms\Settings\CmsSettings;
 use Illuminate\Support\Str;
 
 class EventCategoryResource extends Resource
@@ -22,6 +23,11 @@ class EventCategoryResource extends Resource
     protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static function shouldRegisterNavigation(): bool
+    {
+        return app(CmsSettings::class)->events_enabled;
+    }
 
     public static function form(Form $form): Form
     {

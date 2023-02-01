@@ -2,7 +2,7 @@
 
     @section('banner')
         @parent
-        TESTIMONIALS
+        {{ app(\Hup234design\FilamentCms\Settings\CmsSettings::class)->testimonials_title }}
     @endsection
 
     <div class="container">
