@@ -1,4 +1,4 @@
-<div>
+<div class="py-8">
     @if( $testimonial )
         <div class="bg-gray-900 text-white py-12">
             <div class="container">

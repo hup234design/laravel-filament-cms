@@ -4,6 +4,8 @@ namespace Hup234design\FilamentCms\Filament\Blocks;
 
 use Filament\Forms;
 use Hup234design\FilamentCms\Contracts\ContentBlockTemplate;
+use Hup234design\FilamentCms\Filament\Components\MediaPicker;
+use Hup234design\FilamentCms\Models\MediaLibrary;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -22,14 +24,17 @@ class ImageBlock extends ContentBlock implements ContentBlockTemplate
     public static function schema(): array
     {
         return [
-            Forms\Components\FileUpload::make('image')
-                ->image()
-                ->nullable()
+            MediaPicker::make('image_id')
+                ->label(false)
+                ->variant('featured')
+                ->required()
         ];
     }
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.image-block');
+        return view('filament-cms::livewire.blocks.image-block', [
+            'media' => MediaLibrary::find($this->data['image_id'] ?? null)
+        ]);
     }
 }

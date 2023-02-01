@@ -21,6 +21,6 @@
     {!! $record->content !!}
 </div>
 
-{{--@if( $record->content_blocks )--}}
-{{--    <x-filament-cms::blocks :blocks="$record->content_blocks" />--}}
-{{--@endif--}}
+@if( $record->content_blocks )
+    <x-filament-cms::blocks :blocks="$record->content_blocks" />
+@endif

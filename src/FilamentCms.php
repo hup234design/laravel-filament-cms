@@ -74,7 +74,7 @@ class FilamentCms
                     FilamentCms::headerBlocks(),
                 ])
                 ->collapsible()
-                ->collapsed(true),
+                ->collapsed(false),
 
             Forms\Components\Section::make('Content')
                 ->schema([
@@ -84,14 +84,14 @@ class FilamentCms
                         ->columnSpan(2),
                 ])
                 ->collapsible()
-                ->collapsed(true),
+                ->collapsed(false),
 
             Forms\Components\Section::make('Content Blocks')
                 ->schema([
                     FilamentCms::contentBlocks(),
                 ])
                 ->collapsible()
-                ->collapsed(true),
+                ->collapsed(false),
         ];
     }
 
@@ -146,9 +146,9 @@ class FilamentCms
                 TestimonialBlock::class,
                 ButtonsBlock::class,
                 CallToActionBlock::class,
-                EventBlock::class,
-                ProjectBlock::class,
-                GalleryBlock::class,
+                //EventBlock::class,
+                //ProjectBlock::class,
+                //GalleryBlock::class,
             ],
             config('filament-cms.custom_blocks.content')
         );
