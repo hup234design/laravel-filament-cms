@@ -73,6 +73,14 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
         ];
     }
 
+    protected array $styles = [
+        'media-cropper-style' => __DIR__ . '/../resources/dist/css/cropper.min.css',
+    ];
+
+    protected array $scripts = [
+        'media-cropper-script' => __DIR__ . '/../resources/dist/js/cropper.min.js',
+    ];
+
     public function configurePackage(Package $package): void
     {
         $package
@@ -89,6 +97,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
                 FilamentCmsSetup::class,
                 FilamentCmsSeeder::class
             ])
+            ->hasAssets()
             ->hasRoute('web')
             ->hasViews();
     }

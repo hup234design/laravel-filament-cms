@@ -12,16 +12,10 @@ class MediaLibrary extends Media
         'directory',
         'filename',
         'extension',
-        'size',
         'mime_type',
         'aggregate_type',
         'variant_name',
-        'original_media_id',
-        'original_filename',
-        'alt',
-        'caption',
-        'description',
-        'crop_data',
+        'original_media_id'
     ];
 
     protected $casts = [

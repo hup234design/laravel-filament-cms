@@ -19,7 +19,19 @@ class ListMediaLibraries extends ListRecords
     protected function getActions(): array
     {
         return [
-            //Actions\CreateAction::make(),
+            Actions\CreateAction::make(),
+        ];
+    }
+
+
+
+    protected function getTableContentGrid(): ?array
+    {
+        return [
+            'sm' => 2,
+            'md' => 3,
+            'lg' => 4,
+            'xl' => 5,
         ];
     }
 }
