@@ -4,9 +4,11 @@ namespace Hup234design\FilamentCms\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Plank\Mediable\Mediable;
 
 class Event extends Model
 {
+    use Mediable;
 
     protected $guarded = [];
 

@@ -6,9 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Plank\Mediable\Mediable;
 
 class Project extends Model
 {
+    use Mediable;
+
     protected $guarded = [];
 
     protected $casts = [

@@ -5,12 +5,12 @@ namespace Hup234design\FilamentCms\Filament\Resources\PageResource\Pages;
 use Hup234design\FilamentCms\Filament\Resources\PageResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Database\Eloquent\Model;
-use Plank\Mediable\Facades\ImageManipulator;
-use Plank\Mediable\Facades\MediaUploader;
+use Hup234design\FilamentCms\Traits\HandleMediables;
 
 class EditPage extends EditRecord
 {
+    use HandleMediables;
+
     protected static string $resource = PageResource::class;
 
     protected function getActions(): array
@@ -20,8 +20,9 @@ class EditPage extends EditRecord
         ];
     }
 
-    protected function handleRecordUpdate(Model $record, array $data): Model
-    {
+//    protected function handleRecordUpdate(Model $record, array $data): Model
+//    {
+//        $media =
 //        if ( $header_image = $data['header_image'] ?? null ) {
 //            $media = MediaUploader::importPath('public', $header_image);
 //            $thumbnail = ImageManipulator::createImageVariant($media, 'thumbnail');
@@ -41,9 +42,11 @@ class EditPage extends EditRecord
 //        unset($data['header_image']);
 //        unset($data['featured_image']);
 
-        $record->update($data);
-
-        return $record;
-    }
+//        ray("handleRecordUpdate");
+//
+//        $record->update($data);
+//
+//        return $record;
+//    }
 
 }

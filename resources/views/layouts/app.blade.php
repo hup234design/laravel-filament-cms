@@ -42,7 +42,7 @@
 </header>
 
 @hasSection('banner')
-    <div class="relative h-32 bg-gray-200 flex items-center justify-center border-b border-gray-400">
+    <div class="relative h-64 bg-gray-200 flex items-center justify-center border-b border-gray-400">
         <span class="text-3xl font-extrabold leading-none uppercase">
             @yield('banner')
         </span>

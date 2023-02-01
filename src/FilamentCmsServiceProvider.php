@@ -21,6 +21,8 @@ use Hup234design\FilamentCms\Filament\Blocks\ImageBlock;
 use Hup234design\FilamentCms\Filament\Blocks\ProjectBlock;
 use Hup234design\FilamentCms\Filament\Blocks\RichEditorBlock;
 use Hup234design\FilamentCms\Filament\Blocks\TestimonialBlock;
+use Hup234design\FilamentCms\Filament\Components\MediaPicker;
+use Hup234design\FilamentCms\Filament\Forms\Components\MediaLibraryPicker;
 use Hup234design\FilamentCms\Filament\Pages\ManageCmsSettings;
 use Hup234design\FilamentCms\Filament\Resources\EventCategoryResource;
 use Hup234design\FilamentCms\Filament\Resources\EventResource;
@@ -161,6 +163,8 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
                 })
             );
         }
+
+        Livewire::component('media-library-picker', MediaLibraryPicker::class);
 
         Livewire::component('rich-editor-block', RichEditorBlock::class);
         Livewire::component('image-block', ImageBlock::class);

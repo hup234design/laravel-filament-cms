@@ -12,6 +12,7 @@ use Hup234design\FilamentCms\Filament\Blocks\ImageBlock;
 use Hup234design\FilamentCms\Filament\Blocks\ProjectBlock;
 use Hup234design\FilamentCms\Filament\Blocks\RichEditorBlock;
 use Hup234design\FilamentCms\Filament\Blocks\TestimonialBlock;
+use Hup234design\FilamentCms\Filament\Components\MediaPicker;
 use Illuminate\Support\Str;
 
 class FilamentCms
@@ -49,6 +50,24 @@ class FilamentCms
 //                        ->nullable()
 //                        ->columnSpan(2),
                 ]),
+
+            Forms\Components\Section::make('Header Image')
+                ->schema([
+                    MediaPicker::make('header_image_id')
+                        ->label(false)
+                        ->variant('banner')
+                        ->nullable()
+                ])
+                ->collapsible(),
+
+            Forms\Components\Section::make('Featured Image')
+                ->schema([
+                    MediaPicker::make('featured_image_id')
+                        ->label(false)
+                        ->variant('featured')
+                        ->nullable()
+                ])
+                ->collapsible(),
 
             Forms\Components\Section::make('Header Blocks')
                 ->schema([

@@ -4,14 +4,16 @@ namespace Hup234design\FilamentCms\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Plank\Mediable\Mediable;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
 class Page extends Model implements Sortable
 {
+    use Mediable;
     use SortableTrait;
 
-    protected $guarded = [];
+    protected $guarded = ['featured_image_id'];
 
     protected $casts = [
         'home'           => 'boolean',
@@ -21,7 +23,9 @@ class Page extends Model implements Sortable
 
     public array $sortable = [
         'order_column_name'  => 'sort_order',
-        'sort_when_creating' => true,
+        'sort_when_creating' =>
+
+            true,
     ];
 
     public function scopeVisible($query)
