@@ -13,7 +13,7 @@ class ListMediaLibraries extends ListRecords
 
     protected function getTableQuery(): Builder
     {
-        return parent::getTableQuery()->originals();
+        return parent::getTableQuery()->originals()->orderBy('updated_at','desc');
     }
 
     protected function getActions(): array
@@ -23,15 +23,13 @@ class ListMediaLibraries extends ListRecords
         ];
     }
 
-
-
-    protected function getTableContentGrid(): ?array
-    {
-        return [
-            'sm' => 2,
-            'md' => 3,
-            'lg' => 4,
-            'xl' => 5,
-        ];
-    }
+//    protected function getTableContentGrid(): ?array
+//    {
+//        return [
+//            'sm' => 2,
+//            'md' => 3,
+//            'lg' => 4,
+//            'xl' => 5,
+//        ];
+//    }
 }
