@@ -59,8 +59,10 @@ class MediaLibraryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('thumbnail_url')->label('Image')->size('100%'),
+                Tables\Columns\ImageColumn::make('thumbnail_url')->label('Image')->size(80),
                 Tables\Columns\TextColumn::make('original_filename')->label('Original Filename')->searchable(),
+                Tables\Columns\TextColumn::make('alt')->label('Alt')->searchable(),
+                Tables\Columns\TextColumn::make('size'),
             ])
             ->filters([
                 //
