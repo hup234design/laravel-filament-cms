@@ -31,6 +31,20 @@ class MediaLibrary extends Media
         return $query->whereNull('variant_name');
     }
 
+    public function getFullFileNameAttribute() {
+        return ($this->original_filename ?: $this->filename ) . "." .$this->extension;
+    }
+
+    public function getFileSizeAttribute(): string
+    {
+        $units = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'];
+        $size = $this->size;
+        for ($i = 0; $size > 1024; $i++) {
+            $size /= 1024;
+        }
+        return round($size, 2).' '.$units[$i];
+    }
+
     public static function boot()
     {
         parent::boot();

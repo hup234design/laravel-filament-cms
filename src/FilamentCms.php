@@ -69,12 +69,12 @@ class FilamentCms
                 ])
                 ->collapsible(),
 
-            Forms\Components\Section::make('Header Blocks')
-                ->schema([
-                    FilamentCms::headerBlocks(),
-                ])
-                ->collapsible()
-                ->collapsed(false),
+//            Forms\Components\Section::make('Header Blocks')
+//                ->schema([
+//                    FilamentCms::headerBlocks(),
+//                ])
+//                ->collapsible()
+//                ->collapsed(false),
 
             Forms\Components\Section::make('Content')
                 ->schema([

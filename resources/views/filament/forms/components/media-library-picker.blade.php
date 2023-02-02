@@ -1,5 +1,4 @@
 <div>
-    {{ $modalId }}
     <div
         x-on:use-selected.window="$dispatch('close-modal', { id: '{{ $modalId }}' })"
         x-on:use-selected.window="console.log('hello')"
@@ -19,41 +18,68 @@
                         </div>
                         <div class="mt-4">
                             <div>
-                                <h2 class="text-lg font-medium text-gray-900"><span class="sr-only">Details for </span>IMG_4985.HEIC</h2>
-                                <p class="text-sm font-medium text-gray-500">3.9 MB</p>
+                                <h2 class="text-lg font-medium text-gray-900 truncate"><span class="sr-only">Details for </span>
+                                    {{ $this->selectedMedia->full_file_name }}
+                                </h2>
+                                <p class="text-sm font-medium text-gray-500">
+                                    {{ $this->selectedMedia->file_size }}
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div>
                         <h3 class="font-medium text-gray-900">Information</h3>
-                        <dl class="mt-2 divide-y divide-gray-200 border-t border-b border-gray-200">
+                        <dl class="mt-2 divide-y divide-gray-200 border-t border-gray-200">
 
                             <div class="flex justify-between py-3 text-sm font-medium">
                                 <dt class="text-gray-500">Uploaded</dt>
-                                <dd class="whitespace-nowrap text-gray-900">June 8, 2020</dd>
+                                <dd class="whitespace-nowrap text-gray-900">
+                                    {{ $this->selectedMedia->created_at }}
+                                </dd>
                             </div>
 
                             <div class="flex justify-between py-3 text-sm font-medium">
-                                <dt class="text-gray-500">Dimensions</dt>
-                                <dd class="whitespace-nowrap text-gray-900">4032 x 3024</dd>
+                                <dt class="text-gray-500">Alt Text</dt>
+                                <dd class="whitespace-nowrap text-gray-900">
+                                    {{ $this->selectedMedia->alt }}
+                                </dd>
+                            </div>
+
+                            <div class="flex justify-between py-3 text-sm font-medium">
+                                <dt class="text-gray-500">Caption</dt>
+                                <dd class="whitespace-nowrap text-gray-900">
+                                    {{ $this->selectedMedia->caption }}
+                                </dd>
+                            </div>
+
+                            <div class="flex justify-between py-3 text-sm font-medium">
+                                <dt class="text-gray-500">Description</dt>
+                                <dd class="whitespace-nowrap text-gray-900">
+                                    {{ $this->selectedMedia->description }}
+                                </dd>
                             </div>
 
                         </dl>
                     </div>
-                    <div>
-                        <h3 class="font-medium text-gray-900">Description</h3>
-                        <div class="mt-2">
-                            <p class="text-sm italic text-gray-500">Add a description to this image.</p>
-                        </div>
-                    </div>
                     <div class="flex">
-                        <button
+                        <x-filament::button
                             type="button"
-                            class="ml-3 flex-1 rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            color="success"
                             wire:click.prevent="useSelected"
                         >
                             Use This Image
-                        </button>
+                        </x-filament::button>
+                    </div>
+
+                    <div class="space-y-4">
+                        @foreach( $this->selectedMedia->getAllVariants() as $variant )
+                            <div class="relative">
+                                <img src="{{ $variant->getUrl() }}" class="w-auto max-h-48 mx-auto">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-white bg-black bg-opacity-80 px-2 py-1 text-sm rounded-lg leading-none">{{ $variant->variant_name }}</span>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             @else

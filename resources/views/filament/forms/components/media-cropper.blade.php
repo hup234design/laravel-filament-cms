@@ -15,11 +15,8 @@
 
         @foreach( config('filament-cms.media.variants') as $variant=>$settings)
 
-            <p>{{ $variant }}</p>
-            <div>
-                {{ json_encode( $settings ) }}
-            </div>
-            <h3 class="text-xl font-bold">{{ $variant }} ( {{ $getRecord()->findVariant($variant)->size }} )</h3>
+            {{--<h3 class="text-lg font-semibold">{{ $variant }} ( {{ $getRecord()->findVariant($variant)->size }} )</h3>--}}
+            <h3 class="text-lg font-semibold">{{ $variant }} </h3>
 
             <div class="">
                 <div

@@ -2,6 +2,7 @@
 
 namespace Hup234design\FilamentCms\Filament\Forms\Components;
 
+use Filament\Pages\Actions\Action;
 use Filament\Tables;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -9,6 +10,7 @@ use Hup234design\FilamentCms\Models\Gallery;
 use Hup234design\FilamentCms\Models\GalleryImage;
 use Hup234design\FilamentCms\Models\MediaLibrary;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
 class MediaLibraryPicker extends Component implements HasTable
@@ -33,12 +35,33 @@ class MediaLibraryPicker extends Component implements HasTable
     protected function getTableColumns(): array
     {
         return [
+            Tables\Columns\TextColumn::make('alt')->searchable(),
             Tables\Columns\ImageColumn::make('thumbnail_url')
                 ->label('Image')
                 ->size('100%')
                 ->action(function (MediaLibrary $record): void {
                     $this->selectMediaLibraryImage($record);
                 }),
+            Tables\Columns\TextColumn::make('full_file_name')->searchable()
+        ];
+    }
+
+    protected function getTableActions(): array
+    {
+        return [
+            Tables\Actions\Action::make('select')
+                ->action(function (MediaLibrary $record) {
+                    $this->selectMediaLibraryImage($record);
+                    $this->useSelected();
+                })
+                ->color('success')
+                ->icon('heroicon-o-check-circle'),
+            Tables\Actions\Action::make('view')
+                ->action(function (MediaLibrary $record) {
+                    $this->selectMediaLibraryImage($record);
+                })
+                ->color('primary')
+                ->icon('heroicon-o-eye'),
         ];
     }
 
@@ -50,11 +73,6 @@ class MediaLibraryPicker extends Component implements HasTable
             'lg' => 4,
             'xl' => 4,
         ];
-    }
-
-    public function isTableSearchable(): bool
-    {
-        return true;
     }
 
     protected function getFormStatePath(): string

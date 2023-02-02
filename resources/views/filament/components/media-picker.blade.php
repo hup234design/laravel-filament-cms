@@ -36,6 +36,7 @@
             <div class="w-full flex justify-center">
             <x-filament::button
                 type="button"
+                :color="$isGallery ? 'secondary' : 'primary'"
                 wire:click="mountFormComponentAction('{{ $statePath }}', 'media-library-picker')"
             >
                 {{ $selectedMedia ? 'Change' : 'Select' }} Image{{ $isGallery ? 's' : '' }}

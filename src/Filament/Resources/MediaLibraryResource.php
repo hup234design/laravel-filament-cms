@@ -34,25 +34,24 @@ class MediaLibraryResource extends Resource
                     ->required()
                     ->multiple()
                     ->storeFileNamesIn('original_filenames')
-                    ->hidden(fn (Page $livewire) => $livewire instanceof EditRecord)
-                    ->columnSpan(3),
+                    ->hidden(fn (Page $livewire) => $livewire instanceof EditRecord),
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\TextInput::make('alt'),
                         Forms\Components\Textarea::make('caption')->rows(3),
                         Forms\Components\Textarea::make('description')->rows(3),
                     ])
-                    ->columnSpan(1)
-                    ->hidden(fn (Page $livewire) => $livewire instanceof CreateRecord),
+                    ->hidden(fn (Page $livewire) => $livewire instanceof CreateRecord)
+                    ->columnSpan(1),
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\ViewField::make('crop_data')
                             ->view('filament-cms::filament.forms.components.media-cropper')
                     ])
-                    ->columnSpan(2)
                     ->hidden(fn (Page $livewire) => $livewire instanceof CreateRecord)
+                    ->columnSpan(1)
             ])
-            ->columns(3);
+            ->columns(2);
     }
 
     public static function table(Table $table): Table
