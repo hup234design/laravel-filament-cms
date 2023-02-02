@@ -1,7 +1,8 @@
 
 @php
-    $statePath   = $getStatePath();
-    $selectedUrl = $getSelectedMedia();
+    $statePath     = $getStatePath();
+    $selectedMedia = $getSelectedMedia();
+    $isGallery     = $isGallery();
 @endphp
 
 <x-forms::field-wrapper
@@ -22,8 +23,14 @@
 
         <div class="space-y-4">
 
-            @if( $selectedUrl )
-                <img src="{{ $selectedUrl }}" class="w-full" >
+            @if( $selectedMedia )
+                @if( $isGallery )
+                    <div class="w-full grid grid-cols-4 gap-4">
+                        <img src="{{ $selectedMedia }}" class="w-full" >
+                    </div>
+                @else
+                    <img src="{{ $selectedMedia }}" class="w-full" >
+                @endif
             @endif
 
             <div class="w-full flex justify-center">
@@ -31,7 +38,7 @@
                 type="button"
                 wire:click="mountFormComponentAction('{{ $statePath }}', 'media-library-picker')"
             >
-                {{ $selectedUrl ? 'Change' : 'Select' }} Image
+                {{ $selectedMedia ? 'Change' : 'Select' }} Image{{ $isGallery ? 's' : '' }}
             </x-filament::button>
             </div>
 

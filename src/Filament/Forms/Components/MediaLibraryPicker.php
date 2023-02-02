@@ -5,6 +5,8 @@ namespace Hup234design\FilamentCms\Filament\Forms\Components;
 use Filament\Tables;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
+use Hup234design\FilamentCms\Models\Gallery;
+use Hup234design\FilamentCms\Models\GalleryImage;
 use Hup234design\FilamentCms\Models\MediaLibrary;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
@@ -20,6 +22,8 @@ class MediaLibraryPicker extends Component implements HasTable
     public $modalId;
 
     public $recordId;
+
+    public $isGallery;
 
     protected function getTableQuery(): Builder
     {
@@ -74,8 +78,14 @@ class MediaLibraryPicker extends Component implements HasTable
 
     public function useSelected(): void
     {
-        $this->dispatchBrowserEvent('use-selected', ['media' => $this->selectedMedia, 'statePath' => $this->statePath]);
-        $this->dispatchBrowserEvent('close-modal', ['id' => $this->modalId]);
+        if( $this->isGallery) {
+            $galleryImage = GalleryImage::create(['gallery_id' => $this->recordId]);
+            $galleryImage->syncMedia($this->selectedMedia, 'gallery_image');
+            $this->dispatchBrowserEvent('use-selected', ['media' => null, 'statePath' => $this->statePath]);
+            $this->emit('galleryUpdated');
+        } else {
+            $this->dispatchBrowserEvent('use-selected', ['media' => $this->selectedMedia, 'statePath' => $this->statePath]);
+        }
     }
 
 }

@@ -25,6 +25,8 @@ class MediaPickerAction extends Action
         $this->modalContent(static function(MediaPicker $component): View {
             return view('filament-cms::filament.components.media-picker-action', [
                 'statePath' => $component->getStatePath(),
+                'isGallery' => $component->isGallery(),
+                'recordId' => $component->getRecord()?->id,
                 'modalId'   => $component->getLivewire()->id . '-form-component-action',
             ]);
         });

@@ -148,7 +148,7 @@ class FilamentCms
                 CallToActionBlock::class,
                 //EventBlock::class,
                 //ProjectBlock::class,
-                //GalleryBlock::class,
+                GalleryBlock::class,
             ],
             config('filament-cms.custom_blocks.content')
         );

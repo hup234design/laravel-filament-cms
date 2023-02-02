@@ -14,6 +14,7 @@ trait HandleMediables
         $images = [
             'header_image_id'   => $data['header_image_id']   ?? null,
             'featured_image_id' => $data['featured_image_id'] ?? null,
+            'image_id'          => $data['image_id']   ?? null,
         ];
         $data = array_diff_key($data, array_flip(array_keys($images)));
         $record = $this->getModel()::create($data);
@@ -27,12 +28,11 @@ trait HandleMediables
         // $record->update($data);
         // return $record;
 
-        ray("HandleMediables : handleRecordUpdate");
         $images = [
             'header_image_id'   => $data['header_image_id']   ?? null,
             'featured_image_id' => $data['featured_image_id'] ?? null,
+            'gallery_image_id'  => $data['gallery_image_id'] ?? null,
         ];
-        ray($images);
         $data = array_diff_key($data, array_flip(array_keys($images)));
         $record->update($data);
 
@@ -44,6 +44,7 @@ trait HandleMediables
     {
         $data['header_image_id']   = $this->getRecord()->firstMedia('header_image')?->id;
         $data['featured_image_id'] = $this->getRecord()->firstMedia('featured_image')?->id;
+        $data['gallery_image_id']  = $this->getRecord()->firstMedia('gallery_image')?->id;
         return $data;
     }
 
@@ -61,6 +62,13 @@ trait HandleMediables
             $record->syncMedia($media, 'featured_image');
         } else {
             $record->detachMediaTags('featured_image');
+        }
+
+        if ( $images['gallery_image_id'] ) {
+            $media = MediaLibrary::find($images['gallery_image_id']);
+            $record->syncMedia($media, 'gallery_image');
+        } else {
+            $record->detachMediaTags('gallery_image');
         }
     }
 }

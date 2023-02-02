@@ -10,7 +10,8 @@ class MediaPicker extends Field
 {
     protected string $view = 'filament-cms::filament.components.media-picker';
 
-    protected string|null $variant = null;
+    protected string|null  $variant = null;
+    protected bool|null $gallery = false;
 
     protected function setUp(): void
     {
@@ -30,9 +31,21 @@ class MediaPicker extends Field
         return $this;
     }
 
+    public function gallery(bool | \Closure | null $gallery): static
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
     public function getVariant(): string
     {
         return $this->evaluate($this->variant);
+    }
+
+    public function isGallery(): string
+    {
+        return $this->evaluate($this->gallery);
     }
 
     public function getSelectedMedia(): string|null

@@ -28,6 +28,7 @@ use Hup234design\FilamentCms\Filament\Forms\Components\MediaLibraryPicker;
 use Hup234design\FilamentCms\Filament\Pages\ManageCmsSettings;
 use Hup234design\FilamentCms\Filament\Resources\EventCategoryResource;
 use Hup234design\FilamentCms\Filament\Resources\EventResource;
+use Hup234design\FilamentCms\Filament\Resources\GalleryResource;
 use Hup234design\FilamentCms\Filament\Resources\MediaLibraryResource;
 use Hup234design\FilamentCms\Filament\Resources\PageResource;
 use Hup234design\FilamentCms\Filament\Resources\PostCategoryResource;
@@ -63,6 +64,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
             EventCategoryResource::class,
             EventResource::class,
             MediaLibraryResource::class,
+            GalleryResource::class,
         ];
     }
 
