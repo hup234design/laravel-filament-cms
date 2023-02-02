@@ -42,7 +42,7 @@ class MediaLibraryPicker extends Component implements HasTable
                 ->action(function (MediaLibrary $record): void {
                     $this->selectMediaLibraryImage($record);
                 }),
-            Tables\Columns\TextColumn::make('full_file_name')->searchable()
+            Tables\Columns\TextColumn::make('original_filename')->searchable()
         ];
     }
 
