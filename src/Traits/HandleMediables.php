@@ -14,7 +14,7 @@ trait HandleMediables
         $images = [
             'header_image_id'   => $data['header_image_id']   ?? null,
             'featured_image_id' => $data['featured_image_id'] ?? null,
-            'image_id'          => $data['image_id']   ?? null,
+            'gallery_image_id'  => $data['gallery_image_id']   ?? null,
         ];
         $data = array_diff_key($data, array_flip(array_keys($images)));
         $record = $this->getModel()::create($data);

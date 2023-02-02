@@ -23,9 +23,7 @@ class Page extends Model implements Sortable
 
     public array $sortable = [
         'order_column_name'  => 'sort_order',
-        'sort_when_creating' =>
-
-            true,
+        'sort_when_creating' => true,
     ];
 
     public function scopeVisible($query)
