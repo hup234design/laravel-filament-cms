@@ -18,11 +18,17 @@
                 </div>
 
             @elseif( $data['display_as'] == 'list')
-                <div class="space-y-4">
-                @foreach( $gallery->gallery_images as $image)
-                    @if($image->hasMedia('gallery_image'))
-                        <div class="w-64">
-                            <img src="{{ $image->firstMedia('gallery_image')->findVariant('thumbnail')->getUrl() }}" class="my-0 w-full">
+                <div class="space-y-16">
+                @foreach( $gallery->gallery_images as $gallery_image)
+                    @if($gallery_image->hasMedia('gallery_image'))
+                        <div class="flex gap-8">
+                            <div class="w-64 flex-shrink-0">
+                                <img src="{{ $gallery_image->firstMedia('gallery_image')->findVariant('thumbnail')->getUrl() }}" class="my-0 w-full">
+                            </div>
+                            <div clas="flex-1">
+                                <h2 class="mt-0">{{ $gallery_image->title }}</h2>
+                                {!! $gallery_image->description !!}
+                            </div>
                         </div>
                     @endif
                 @endforeach

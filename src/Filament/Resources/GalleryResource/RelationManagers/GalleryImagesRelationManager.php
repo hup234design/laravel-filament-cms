@@ -24,17 +24,33 @@ class GalleryImagesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id')
-                    ->required()
+                Forms\Components\TextInput::make('title')
+                    ->nullable()
                     ->maxLength(255),
-            ]);
+                Forms\Components\RichEditor::make('description')
+                    ->nullable()
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'undo',
+                    ]),
+            ])
+            ->columns(1);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('thumbnail_url')->size('100%'),
+                Tables\Columns\ImageColumn::make('thumbnail_url')->size(160),
+                Tables\Columns\ViewColumn::make('text')
+                    ->label('Title & Description')
+                    ->view('filament-cms::filament.tables.columns.gallery-image-title-description'),
             ])
             ->filters([
                 //
@@ -56,13 +72,13 @@ class GalleryImagesRelationManager extends RelationManager
         return 'sort_order';
     }
 
-        protected function getTableContentGrid(): ?array
-    {
-        return [
-            'sm' => 2,
-            'md' => 3,
-            'lg' => 4,
-            'xl' => 5,
-        ];
-    }
+//    protected function getTableContentGrid(): ?array
+//    {
+//        return [
+//            'sm' => 2,
+//            'md' => 3,
+//            'lg' => 4,
+//            'xl' => 5,
+//        ];
+//    }
 }
