@@ -1,5 +1,7 @@
 import './bootstrap';
 
+import 'fslightbox';
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

@@ -31,9 +31,9 @@ class Post extends Model
         return $query->where('published', true)->whereDate('published_at', '<=', Carbon::now());
     }
 
-    public function scopeRecent($query)
+    public function scopeRecent($query, $limit = 5)
     {
-        return $query->live()->take(5);
+        return $query->live()->take($limit);
     }
 
     protected static function boot()

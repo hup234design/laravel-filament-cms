@@ -111,10 +111,28 @@
         @endif
 
         <div class="text-center text-sm text-gray-200">
+            <p>LATEST POSTS</p>
+            @foreach($recent_posts as $recent_post)
+                <p>
+                    <a href="{{ route('post', $recent_post->slug) }}">
+                        {{ $recent_post->title }}
+                    </a>
+                </p>
+                <p>
+                    <small>
+                        {{ $recent_post->published_at }}
+                    </small>
+                </p>
+            @endforeach
+        </div>
+
+        <div class="text-center text-sm text-gray-200">
             Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
         </div>
     </div>
 </footer>
+
+@include('cookie-consent::index')
 
 </body>
 </html>

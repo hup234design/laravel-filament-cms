@@ -13,6 +13,8 @@ class FilamentCmsSetup extends Command
 
     public function handle()
     {
+        $filesystem = new Filesystem();
+
         $this->output->info('Install Filament CMS');
 
         $stubs = $this->getStubsPath();
@@ -53,16 +55,20 @@ class FilamentCmsSetup extends Command
             'npm install alpinejs',
             'npm install tippy.js',
             'npm install -D tailwindcss postcss autoprefixer @tailwindcss/forms @tailwindcss/typography @tailwindcss/line-clamp @tailwindcss/aspect-ratio',
+            'npm install fslightbox',
             'npx tailwindcss init -p'
         ]);
 
-        copy($stubs.'/tailwind.config.js',   base_path('tailwind.config.js'));
-        copy($stubs.'/postcss.config.js',   base_path('postcss.config.js'));
-        copy($stubs.'/vite.config.js',   base_path('vite.config.js'));
-        copy($stubs.'/resources/js/app.js',  resource_path('js/app.js'));
-        copy($stubs.'/resources/css/app.css', resource_path('css/app.css'));
 
-        (new Filesystem())->copyDirectory($stubs.'/resources', resource_path(''));
+        $filesystem->copyDirectory(__DIR__.'/../../stubs', base_path());
+
+        //copy($stubs.'/tailwind.config.js',   base_path('tailwind.config.js'));
+        //copy($stubs.'/postcss.config.js',   base_path('postcss.config.js'));
+        //copy($stubs.'/vite.config.js',   base_path('vite.config.js'));
+        //copy($stubs.'/resources/js/app.js',  resource_path('js/app.js'));
+        //copy($stubs.'/resources/css/app.css', resource_path('css/app.css'));
+
+//        (new Filesystem())->copyDirectory($stubs.'/resources', resource_path(''));
     }
 
     /**

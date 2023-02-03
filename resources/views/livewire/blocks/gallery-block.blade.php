@@ -1,5 +1,6 @@
 <div class="py-8">
     @if( $gallery )
+
         <div class="container">
             @if( $data['display_heading'] )
                 <h2>
@@ -10,9 +11,11 @@
             @if( $data['display_as'] == 'grid')
 
                 <div class="grid grid-cols-5 gap-4">
-                    @foreach( $gallery->gallery_images as $image)
-                        @if($image->hasMedia('gallery_image'))
-                            <img src="{{ $image->firstMedia('gallery_image')->findVariant('thumbnail')->getUrl() }}" class="my-0 w-full">
+                    @foreach( $gallery->gallery_images as $gallery_image)
+                        @if($gallery_image->hasMedia('gallery_image'))
+                            <a data-fslightbox href="{{ $gallery_image->firstMedia('gallery_image')->getUrl() }}" class="block w-full">
+                                <img src="{{ $gallery_image->firstMedia('gallery_image')->findVariant('thumbnail')->getUrl() }}" alt="Image" class="my-0 w-full">
+                            </a>
                         @endif
                     @endforeach
                 </div>
@@ -23,7 +26,9 @@
                     @if($gallery_image->hasMedia('gallery_image'))
                         <div class="flex gap-8">
                             <div class="w-64 flex-shrink-0">
-                                <img src="{{ $gallery_image->firstMedia('gallery_image')->findVariant('thumbnail')->getUrl() }}" class="my-0 w-full">
+                                <a data-fslightbox href="{{ $gallery_image->firstMedia('gallery_image')->getUrl() }}" class="block w-full">
+                                    <img src="{{ $gallery_image->firstMedia('gallery_image')->findVariant('thumbnail')->getUrl() }}" alt="Image" class="my-0 w-full">
+                                </a>
                             </div>
                             <div clas="flex-1">
                                 <h2 class="mt-0">{{ $gallery_image->title }}</h2>

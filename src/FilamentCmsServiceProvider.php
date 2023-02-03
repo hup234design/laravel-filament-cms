@@ -15,6 +15,7 @@ use Hup234design\FilamentCms\Components\EventsLayout;
 use Hup234design\FilamentCms\Components\PostsLayout;
 use Hup234design\FilamentCms\Components\ProjectsLayout;
 use Hup234design\FilamentCms\Components\ServicesLayout;
+use Hup234design\FilamentCms\Composers\PostsComposer;
 use Hup234design\FilamentCms\Filament\Blocks\ButtonsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\CallToActionBlock;
 use Hup234design\FilamentCms\Filament\Blocks\EventBlock;
@@ -88,6 +89,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
         $package
             ->name('filament-cms')
             ->hasConfigFile()
+            ->hasViewComposer('*', PostsComposer::class)
             ->hasViewComponents('cms',
                 AppLayout::class,
                 PostsLayout::class,

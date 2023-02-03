@@ -25,10 +25,6 @@ class PostsLayout extends Component
      */
     public function render()
     {
-        $recent_posts = Post::recent()->get();
-
-        return view('filament-cms::layouts.posts', [
-            'recent_posts' => $recent_posts,
-        ]);
+        return view('filament-cms::layouts.posts');
     }
 }
