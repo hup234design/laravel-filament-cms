@@ -30,6 +30,14 @@
                     </div>
                 @else
                     <img src="{{ $selectedMedia }}" class="w-full" >
+                    <div>
+                        <x-filament::button
+                            color="danger"
+                            @click="state = null"
+                        >
+                            REMOVE
+                        </x-filament::button>
+                    </div>
                 @endif
             @endif
 

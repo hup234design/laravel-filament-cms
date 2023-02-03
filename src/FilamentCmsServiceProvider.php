@@ -20,6 +20,7 @@ use Hup234design\FilamentCms\Filament\Blocks\ButtonsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\CallToActionBlock;
 use Hup234design\FilamentCms\Filament\Blocks\EventBlock;
 use Hup234design\FilamentCms\Filament\Blocks\GalleryBlock;
+use Hup234design\FilamentCms\Filament\Blocks\HeroBlock;
 use Hup234design\FilamentCms\Filament\Blocks\ImageBlock;
 use Hup234design\FilamentCms\Filament\Blocks\ProjectBlock;
 use Hup234design\FilamentCms\Filament\Blocks\RichEditorBlock;
@@ -189,6 +190,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
         Livewire::component('event-block', EventBlock::class);
         Livewire::component('project-block', ProjectBlock::class);
         Livewire::component('gallery-block', GalleryBlock::class);
+        Livewire::component('hero-block', HeroBlock::class);
     }
 
     public function boot(): void

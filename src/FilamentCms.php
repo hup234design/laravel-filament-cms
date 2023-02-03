@@ -51,14 +51,16 @@ class FilamentCms
 //                        ->columnSpan(2),
                 ]),
 
-            Forms\Components\Section::make('Header Image')
+            Forms\Components\Section::make('Header')
                 ->schema([
                     MediaPicker::make('header_image_id')
                         ->label(false)
                         ->variant('banner')
-                        ->nullable()
+                        ->nullable(),
+                    FilamentCms::headerBlocks(),
                 ])
-                ->collapsible(),
+                ->collapsible()
+                ->collapsed(false),
 
             Forms\Components\Section::make('Featured Image')
                 ->schema([
@@ -68,13 +70,6 @@ class FilamentCms
                         ->nullable()
                 ])
                 ->collapsible(),
-
-//            Forms\Components\Section::make('Header Blocks')
-//                ->schema([
-//                    FilamentCms::headerBlocks(),
-//                ])
-//                ->collapsible()
-//                ->collapsed(false),
 
             Forms\Components\Section::make('Content')
                 ->schema([

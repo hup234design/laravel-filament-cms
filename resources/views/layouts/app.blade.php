@@ -41,18 +41,16 @@
     @endif
 </header>
 
+@hasSection('header')
+    <div class="relative w-full">
+        @yield('header')
+    </div>
+@endisset
+
 @hasSection('banner')
     <div class="relative h-64 bg-gray-200 flex items-center justify-center border-b border-gray-400">
         <span class="text-3xl font-extrabold leading-none uppercase">
             @yield('banner')
-        </span>
-    </div>
-@endisset
-
-@hasSection('hero')
-    <div class="relative h-96 bg-gray-300 flex items-center justify-center">
-        <span class="text-3xl font-extrabold leading-none uppercase">
-            @yield('hero')
         </span>
     </div>
 @endisset

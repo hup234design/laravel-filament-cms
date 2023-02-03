@@ -48,6 +48,10 @@ class MediaPicker extends Field
         return $this->evaluate($this->gallery);
     }
 
+    public function removeSelected() {
+        $this->dispatchBrowserEvent('use-selected', ['media' => null, 'statePath' => $this->statePath]);
+    }
+
     public function getSelectedMedia(): string|null
     {
             if ( $media = MediaLibrary::where('id', $this->getState())->first() ) {

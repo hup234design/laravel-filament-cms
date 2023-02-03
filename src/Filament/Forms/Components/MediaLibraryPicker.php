@@ -90,6 +90,10 @@ class MediaLibraryPicker extends Component implements HasTable
         return view('filament-cms::filament.forms.components.media-library-picker');
     }
 
+    protected $listeners = [
+        'removeSlected' => 'removeSelected'
+    ];
+
     public function selectMediaLibraryImage(MediaLibrary $media) {
         $this->selectedMedia = $media;
     }

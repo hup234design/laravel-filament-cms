@@ -19,6 +19,7 @@
     @if($record->hasMedia('featured_image'))
         <img src="{{ $record->firstMedia('featured_image')->getUrl() }}" class="w-full">
     @endif
+    <h1>{{ $record->title }}</h1>
     {!! $record->content !!}
 </div>
 
