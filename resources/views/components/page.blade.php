@@ -1,6 +1,6 @@
 @props(['record'])
 
-@if( count($record->header_blocks) > 0 )
+@if( $record->header_blocks )
     @section('header')
         @parent
         @if($record->hasMedia('header_image'))
