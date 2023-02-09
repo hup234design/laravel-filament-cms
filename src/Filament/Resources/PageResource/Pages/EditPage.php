@@ -5,7 +5,7 @@ namespace Hup234design\FilamentCms\Filament\Resources\PageResource\Pages;
 use Hup234design\FilamentCms\Filament\Resources\PageResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Hup234design\FilamentCms\Traits\HandleMediables;
+use Hup234design\FilamentCms\Concerns\HandleMediables;
 
 class EditPage extends EditRecord
 {

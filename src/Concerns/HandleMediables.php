@@ -1,6 +1,6 @@
 <?php
 
-namespace Hup234design\FilamentCms\Traits;
+namespace Hup234design\FilamentCms\Concerns;
 
 use Hup234design\FilamentCms\Models\MediaLibrary;
 use Illuminate\Database\Eloquent\Model;
