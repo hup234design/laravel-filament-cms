@@ -27,6 +27,6 @@ class EventBlock extends ContentBlock implements ContentBlockTemplate
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.event-block');
+        return view('filament-cms::filament.blocks.event-block');
     }
 }

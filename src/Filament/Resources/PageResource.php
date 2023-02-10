@@ -22,7 +22,7 @@ class PageResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-collection';
 
 
     public static function form(Form $form): Form

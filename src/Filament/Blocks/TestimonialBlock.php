@@ -36,7 +36,7 @@ class TestimonialBlock extends ContentBlock implements ContentBlockTemplate
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.testimonial-block', [
+        return view('filament-cms::filament.blocks.testimonial-block', [
             'testimonial' => $this->testimonial
         ]);
     }

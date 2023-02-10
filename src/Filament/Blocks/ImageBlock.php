@@ -33,7 +33,7 @@ class ImageBlock extends ContentBlock implements ContentBlockTemplate
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.image-block', [
+        return view('filament-cms::filament.blocks.image-block', [
             'media' => MediaLibrary::find($this->data['image_id'] ?? null)
         ]);
     }

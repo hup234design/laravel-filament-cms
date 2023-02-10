@@ -21,7 +21,7 @@ class ServiceResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-collection';
 
     protected static function shouldRegisterNavigation(): bool
     {

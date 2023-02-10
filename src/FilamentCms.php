@@ -5,6 +5,7 @@ namespace Hup234design\FilamentCms;
 use Filament\Forms;
 use Hup234design\FilamentCms\Filament\Blocks\ButtonsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\CallToActionBlock;
+use Hup234design\FilamentCms\Filament\Blocks\CardsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\EventBlock;
 use Hup234design\FilamentCms\Filament\Blocks\GalleryBlock;
 use Hup234design\FilamentCms\Filament\Blocks\HeroBlock;
@@ -144,6 +145,7 @@ class FilamentCms
                 //EventBlock::class,
                 //ProjectBlock::class,
                 GalleryBlock::class,
+                CardsBlock::class,
             ],
             config('filament-cms.custom_blocks.content')
         );

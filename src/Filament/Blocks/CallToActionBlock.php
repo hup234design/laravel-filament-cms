@@ -27,6 +27,6 @@ class CallToActionBlock extends ContentBlock implements ContentBlockTemplate
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.call-to-action-block');
+        return view('filament-cms::filament.blocks.call-to-action-block');
     }
 }

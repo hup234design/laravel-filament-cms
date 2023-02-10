@@ -18,6 +18,7 @@ use Hup234design\FilamentCms\Components\ServicesLayout;
 use Hup234design\FilamentCms\Composers\PostsComposer;
 use Hup234design\FilamentCms\Filament\Blocks\ButtonsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\CallToActionBlock;
+use Hup234design\FilamentCms\Filament\Blocks\CardsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\EventBlock;
 use Hup234design\FilamentCms\Filament\Blocks\GalleryBlock;
 use Hup234design\FilamentCms\Filament\Blocks\HeroBlock;
@@ -37,6 +38,7 @@ use Hup234design\FilamentCms\Filament\Resources\PostCategoryResource;
 use Hup234design\FilamentCms\Filament\Resources\PostResource;
 use Hup234design\FilamentCms\Filament\Resources\ProjectCategoryResource;
 use Hup234design\FilamentCms\Filament\Resources\ProjectResource;
+use Hup234design\FilamentCms\Filament\Resources\SectionCategoryResource;
 use Hup234design\FilamentCms\Filament\Resources\ServiceResource;
 use Hup234design\FilamentCms\Filament\Resources\TestimonialResource;
 use Hup234design\FilamentCms\Models\Page;
@@ -67,6 +69,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
             EventResource::class,
             MediaLibraryResource::class,
             GalleryResource::class,
+            SectionCategoryResource::class,
         ];
     }
 
@@ -191,6 +194,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
         Livewire::component('project-block', ProjectBlock::class);
         Livewire::component('gallery-block', GalleryBlock::class);
         Livewire::component('hero-block', HeroBlock::class);
+        Livewire::component('cards-block', CardsBlock::class);
     }
 
     public function boot(): void

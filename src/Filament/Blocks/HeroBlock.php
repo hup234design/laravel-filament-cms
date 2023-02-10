@@ -36,6 +36,6 @@ class HeroBlock extends ContentBlock implements ContentBlockTemplate
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.hero-block');
+        return view('filament-cms::filament.blocks.hero-block');
     }
 }

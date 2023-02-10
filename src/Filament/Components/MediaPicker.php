@@ -54,6 +54,9 @@ class MediaPicker extends Field
 
     public function getSelectedMedia(): string|null
     {
+        ray()->clearAll();
+        ray("getSelectedMedia");
+        ray($this->getState());
             if ( $media = MediaLibrary::where('id', $this->getState())->first() ) {
                 if ($this->variant) {
                     return $media->findVariant($this->variant)?->getUrl();

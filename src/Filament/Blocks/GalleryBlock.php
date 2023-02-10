@@ -39,7 +39,7 @@ class GalleryBlock extends ContentBlock implements ContentBlockTemplate
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.gallery-block', [
+        return view('filament-cms::filament.blocks.gallery-block', [
             'gallery' => Gallery::with('gallery_images')->find($this->data['gallery_id']) ?? null
         ]);
     }

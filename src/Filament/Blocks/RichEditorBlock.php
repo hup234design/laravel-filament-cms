@@ -29,6 +29,6 @@ class RichEditorBlock extends ContentBlock implements ContentBlockTemplate
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.rich-editor-block');
+        return view('filament-cms::filament.blocks.rich-editor-block');
     }
 }

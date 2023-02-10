@@ -4,12 +4,15 @@ namespace Hup234design\FilamentCms\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Plank\Mediable\Mediable;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
-class PostCategory extends Model implements Sortable
+class Section extends Model implements Sortable
 {
     use SortableTrait;
+    use Mediable;
 
     protected $guarded = [];
 
@@ -18,13 +21,18 @@ class PostCategory extends Model implements Sortable
         'sort_when_creating' => true,
     ];
 
+    public function section_category() : BelongsTo
+    {
+        return $this->belongsTo(SectionCategory::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
 
-        // Order by sort order
+        // Order by published at
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('sort_order', 'asc');
+            $builder->orderBy('sort_order', 'desc');
         });
     }
 }

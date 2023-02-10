@@ -27,6 +27,6 @@ class ButtonsBlock extends ContentBlock implements ContentBlockTemplate
 
     public function render(): View
     {
-        return view('filament-cms::livewire.blocks.buttons-block');
+        return view('filament-cms::filament.blocks.buttons-block');
     }
 }
