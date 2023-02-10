@@ -12,6 +12,6 @@ class SectionCategory extends Model
 
     public function sections(): HasMany
     {
-        return $this->hasMany(Section::class)->with('featured_image');
+        return $this->hasMany(Section::class)->with('featured_image')->orderBy('sort_order', 'asc');
     }
 }

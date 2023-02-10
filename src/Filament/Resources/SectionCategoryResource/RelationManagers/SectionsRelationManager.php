@@ -62,4 +62,9 @@ class SectionsRelationManager extends RelationManager
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
+
+    protected function getTableReorderColumn(): ?string
+    {
+        return 'sort_order';
+    }
 }
