@@ -24,6 +24,9 @@ class SectionCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $modelLabel = 'Section Category';
+    protected static ?string $pluralModelLabel = 'Sections';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -45,7 +48,11 @@ class SectionCategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\TextColumn::make('sections_count')
+                    ->label('Sections')
+                    ->counts('sections'),
             ])
             ->filters([
                 //

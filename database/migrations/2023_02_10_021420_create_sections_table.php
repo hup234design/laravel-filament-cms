@@ -15,11 +15,22 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('section_category_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('title');
-            $table->text('content')->nullable();
-            $table->integer('sort_order')->default(1);
+            $table->text('content')
+                ->nullable();
+            $table->integer('featured_image_id')
+                ->unsigned()
+                ->nullable();
+            $table->integer('sort_order')
+                ->default(1);
             $table->timestamps();
+
+            $table->foreign('featured_image_id', 'featured_image_id')
+                ->references('id')->on('media')
+                ->nullOnDelete();
         });
     }
 

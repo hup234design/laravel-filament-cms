@@ -31,6 +31,13 @@ class ImageBlock extends ContentBlock implements ContentBlockTemplate
         ];
     }
 
+    public static function options(): array
+    {
+        return [
+            //
+        ];
+    }
+
     public function render(): View
     {
         return view('filament-cms::filament.blocks.image-block', [

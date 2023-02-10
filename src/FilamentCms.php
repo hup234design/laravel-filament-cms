@@ -5,7 +5,7 @@ namespace Hup234design\FilamentCms;
 use Filament\Forms;
 use Hup234design\FilamentCms\Filament\Blocks\ButtonsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\CallToActionBlock;
-use Hup234design\FilamentCms\Filament\Blocks\CardsBlock;
+use Hup234design\FilamentCms\Filament\Blocks\SectionsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\EventBlock;
 use Hup234design\FilamentCms\Filament\Blocks\GalleryBlock;
 use Hup234design\FilamentCms\Filament\Blocks\HeroBlock;
@@ -120,12 +120,24 @@ class FilamentCms
         foreach ($availableBlocks as $block) {
             $blocks[] = Forms\Components\Builder\Block::make($block::name())
                 ->label($block::title())
-                ->schema(array_merge(
-                    [
-                        Forms\Components\TextInput::make('heading')->nullable()
-                    ],
-                    $block::schema()
-                ));
+                ->schema([
+                    Forms\Components\Tabs::make('Block')
+                        ->tabs([
+                            Forms\Components\Tabs\Tab::make('Content')
+                                ->schema(
+                                    array_merge(
+                                        [
+                                            Forms\Components\TextInput::make('heading')->nullable()
+                                        ],
+                                        $block::schema()
+                                    )
+                                ),
+                                Forms\Components\Tabs\Tab::make('Options')
+                                ->schema([
+                                    Forms\Components\Toggle::make('display_heading')->default(true)
+                                ])
+                        ])
+                ]);
         }
 
         return Forms\Components\Builder::make('header_blocks')
@@ -145,7 +157,7 @@ class FilamentCms
                 //EventBlock::class,
                 //ProjectBlock::class,
                 GalleryBlock::class,
-                CardsBlock::class,
+                SectionsBlock::class,
             ],
             config('filament-cms.custom_blocks.content')
         );
@@ -155,13 +167,27 @@ class FilamentCms
         foreach ($availableBlocks as $block) {
             $blocks[] = Forms\Components\Builder\Block::make($block::name())
                 ->label($block::title())
-                ->schema(array_merge(
-                    [
-                        Forms\Components\TextInput::make('heading')->nullable(),
-                        Forms\Components\Toggle::make('display_heading')->default(true),
-                    ],
-                    $block::schema()
-                ));
+                ->schema([
+                    Forms\Components\Tabs::make('Block')
+                        ->tabs([
+                            Forms\Components\Tabs\Tab::make('Content')
+                                ->schema(
+                                    array_merge(
+                                        [
+                                            Forms\Components\TextInput::make('heading')->nullable()
+                                        ],
+                                        $block::schema()
+                                    )
+                                ),
+                            Forms\Components\Tabs\Tab::make('Options')
+                                ->schema(array_merge(
+                                    [
+                                        Forms\Components\Toggle::make('display_heading')->default(true)
+                                    ],
+                                    $block::options()
+                                ))
+                        ])
+                ]);
         }
 
         return Forms\Components\Builder::make('content_blocks')

@@ -17,8 +17,6 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SectionsRelationManager extends RelationManager
 {
-    use HandleMediables;
-
     protected static string $relationship = 'sections';
 
     protected static ?string $recordTitleAttribute = 'title';
@@ -54,36 +52,10 @@ class SectionsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()
-                    ->using(function (Tables\Contracts\HasRelationshipTable $livewire, array $data): Model {
-                        $featured_image_id = $data['featured_image_id'];
-                        unset($data['featured_image_id']);
-                        $record = $livewire->getRelationship()->create($data);
-
-                        if ( $featured_image_id ) {
-                            $media = MediaLibrary::find($featured_image_id);
-                            $record->syncMedia($media, 'featured_image');
-                        }
-
-                        return $record;
-                    }),
+                Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->using(function (Model $record, array $data): Model {
-                        $featured_image_id = $data['featured_image_id'];
-                        unset($data['featured_image_id']);
-                        $record->update($data);
-
-                        if ( $featured_image_id ) {
-                            $media = MediaLibrary::find($featured_image_id);
-                            $record->syncMedia($media, 'featured_image');
-                        } else {
-                            $record->detachMediaTags('featured_image');
-                        }
-
-                        return $record;
-                    }),
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

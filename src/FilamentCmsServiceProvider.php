@@ -18,7 +18,7 @@ use Hup234design\FilamentCms\Components\ServicesLayout;
 use Hup234design\FilamentCms\Composers\PostsComposer;
 use Hup234design\FilamentCms\Filament\Blocks\ButtonsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\CallToActionBlock;
-use Hup234design\FilamentCms\Filament\Blocks\CardsBlock;
+use Hup234design\FilamentCms\Filament\Blocks\SectionsBlock;
 use Hup234design\FilamentCms\Filament\Blocks\EventBlock;
 use Hup234design\FilamentCms\Filament\Blocks\GalleryBlock;
 use Hup234design\FilamentCms\Filament\Blocks\HeroBlock;
@@ -194,7 +194,7 @@ class FilamentCmsServiceProvider extends PluginServiceProvider
         Livewire::component('project-block', ProjectBlock::class);
         Livewire::component('gallery-block', GalleryBlock::class);
         Livewire::component('hero-block', HeroBlock::class);
-        Livewire::component('cards-block', CardsBlock::class);
+        Livewire::component('sections-block', SectionsBlock::class);
     }
 
     public function boot(): void

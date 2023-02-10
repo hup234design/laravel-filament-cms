@@ -9,4 +9,6 @@ interface ContentBlockTemplate
     public static function title(): string;
 
     public static function schema(): array;
+
+    public static function options(): array;
 }

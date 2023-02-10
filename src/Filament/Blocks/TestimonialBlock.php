@@ -30,6 +30,13 @@ class TestimonialBlock extends ContentBlock implements ContentBlockTemplate
         ];
     }
 
+    public static function options(): array
+    {
+        return [
+            //
+        ];
+    }
+
     public function getTestimonialProperty() {
         return Testimonial::find($this->data['testimonial_id'] ?? null);
     }
