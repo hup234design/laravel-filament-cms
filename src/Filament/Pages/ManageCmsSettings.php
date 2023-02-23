@@ -5,6 +5,7 @@ namespace Hup234design\FilamentCms\Filament\Pages;
 use Filament\Forms;
 use Filament\Pages\SettingsPage;
 use Hup234design\FilamentCms\Settings\CmsSettings;
+use RyanChandler\FilamentNavigation\Filament\Fields\NavigationSelect;
 
 class ManageCmsSettings extends SettingsPage
 {
@@ -89,6 +90,23 @@ class ManageCmsSettings extends SettingsPage
                             Forms\Components\TextInput::make('posts_slug')
                                 ->label('Slug')
                                 ->required(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Navigation')
+                        ->schema([
+                            NavigationSelect::make('primary_header_menu_id')
+                                ->label('Primary Header Menu')
+                                ->required(),
+                            NavigationSelect::make('secondary_header_menu_id')
+                                ->label('Secondary Header Menu')
+                                ->helperText('This will only be used if configured in site theme')
+                                ->default(""),
+                            NavigationSelect::make('primary_footer_menu_id')
+                                ->label('Primary Footer Menu')
+                                ->required(),
+                            NavigationSelect::make('secondary_footer_menu_id')
+                                ->label('Secondary Footer Menu')
+                                ->helperText('This will only be used if configured in site theme')
+                                ->default(""),
                         ]),
                 ])
                 ->columnSpan(2)
