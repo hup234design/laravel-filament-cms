@@ -2,6 +2,7 @@
 
 namespace Hup234design\FilamentCms\Settings;
 
+use phpDocumentor\Reflection\Types\Integer;
 use Spatie\LaravelSettings\Settings;
 
 class CmsSettings extends Settings
@@ -21,6 +22,11 @@ class CmsSettings extends Settings
     public bool   $services_enabled;
     public bool   $projects_enabled;
     public bool   $events_enabled;
+
+    public $primary_header_menu_id;
+    public $secondary_header_menu_id;
+    public $primary_footer_menu_id;
+    public $secondary_footer_menu_id;
 
     public static function group(): string
     {

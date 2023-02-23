@@ -2,8 +2,10 @@
 
 namespace Hup234design\FilamentCms\Components;
 
+use Hup234design\FilamentCms\Settings\CmsSettings;
 use Illuminate\View\Component;
 use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class AppLayout extends Component
 {
@@ -28,12 +30,15 @@ class AppLayout extends Component
      */
     public function render()
     {
-        $header_menu = FilamentNavigation::get('header-menu');
-        $footer_menu = FilamentNavigation::get('footer-menu');
+        $model = FilamentNavigation::getModel();
 
-        return view('filament-cms::layouts.'.$this->layout, [
-            'header_menu' => $header_menu?->items,
-            'footer_menu' => $footer_menu?->items,
-        ]);
+        $menus = [
+            'primary_header'   => $model::find(app(CmsSettings::class)->primary_header_menu_id)?->items,
+            'secondary_header' => $model::find(app(CmsSettings::class)->secondary_header_menu_id)?->items,
+            'primary_footer'   => $model::find(app(CmsSettings::class)->primary_footer_menu_id)?->items,
+            'secondary_footer' => $model::find(app(CmsSettings::class)->secondary_footer_menu_id)?->items,
+        ];
+
+        return view('filament-cms::layouts.'.$this->layout, compact('menus'));
     }
 }

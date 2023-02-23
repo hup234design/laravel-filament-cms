@@ -12,9 +12,9 @@
         {{ config('app.name') }}
     </a>
 
-    @if($header_menu)
+    @if($menus['primary_header'])
     <ul class="flex items-center justify-center gap-16">
-        @foreach( $header_menu as $item )
+        @foreach( $menus['primary_header'] as $item )
             @if($item['type'] == 'external-link')
                 <a href="{{ $item['data']['url'] }}" target="{{ $item['data']['target'] }}" class="text-md text-white leading-none font-medium">
                     {{ $item['label'] }}
@@ -80,9 +80,9 @@
             {{ config('app.name') }}
         </div>
 
-        @if($footer_menu)
+        @if($menus['primary_footer'])
             <ul class="flex items-center justify-center gap-8">
-                @foreach( $footer_menu as $item )
+                @foreach( $menus['primary_footer'] as $item )
                     @if($item['type'] == 'external-link')
                         <a href="{{ $item['data']['url'] }}" target="{{ $item['data']['target'] }}" class="text-sm text-white leading-none font-medium lowercase">
                             {{ $item['label'] }}
